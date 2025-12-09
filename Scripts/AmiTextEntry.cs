@@ -22,10 +22,6 @@ namespace OpenAmi.Scripts
         private int _useCase = -1;
         private int _retryCount = 0;
 
-        [Signal] 
-        public delegate void PasswordCompleteEventHandler();
-
-
         public override void _Ready()
         {
             try
@@ -39,10 +35,7 @@ namespace OpenAmi.Scripts
                 _lineLabel2 = GetNode<Label>("TextEntryCont/StackCont/Line2Cont/LineLabel2");
                 _lineEdit1 = GetNode<LineEdit>("TextEntryCont/StackCont/Line1Cont/LineEdit1");
                 _lineEdit2 = GetNode<LineEdit>("TextEntryCont/StackCont/Line2Cont/LineEdit2");
-
-
-
-                //GD.Print("AMI_TextEntry initialized.");
+               //GD.Print("AMI_TextEntry initialized.");
 
             }
             catch (Exception e)
@@ -54,9 +47,7 @@ namespace OpenAmi.Scripts
 
         public void CallTextEntryByUseCase(int useCase)
 
-        //Caller enum: 0 = UpdateButton, 1 = Update API Key, 2 = FontSize, 3 = Password Setting, 4 = Security question/answer setting, 
-        // 5 = Password Entry, 6 = Security Answer Entry, 7 = API Key entry for lost password, 8 = Confirm password disable and API deletion
-
+        //Caller enum: 0 = UpdateButton, 1 = Update API Key, 2 = FontSize, 9 = Update CollectionID
         {
             try
             {
@@ -100,71 +91,6 @@ namespace OpenAmi.Scripts
                         this.Visible = true;
                         break;
 
-                    case 3: //Password Setting
-                        _textInstructionLabel.Text = "Set your password (at least 8 characters, no spaces):";
-                        _lineLabel1.Visible = true;
-                        _lineLabel2.Visible = true;
-                        _lineLabel1.Text = "Password:";
-                        _lineLabel2.Text = "Confirm:";
-                        _lineEdit1.Visible = true;
-                        _lineEdit2.Visible = true;
-                        _lineEdit1.SetCustomMinimumSize(new (280, 40));
-                        _lineEdit2.SetCustomMinimumSize(new(280, 40));
-                        Visible = true;
-                        break;
-
-                    case 4: //Set security question and answer
-                        _textInstructionLabel.Text = "Define a security question and answer: (up to 60 characters):";
-                        _lineLabel1.Text = "Question:";
-                        _lineLabel2.Text = "Answer:";
-                        _lineEdit1.SetCustomMinimumSize(new(720, 40));
-                        _lineEdit1.SetCustomMinimumSize(new(720, 40));
-                        Visible = true;
-                        break;
-
-                    default:
-                        GD.PrintErr("AMI_TextEntry invalid caller index.");
-                        break;
-
-                    case 5: //Password Entry
-                        _textInstructionLabel.Text = "Enter your password:";
-                        _lineLabel1.Visible = false;
-                        _lineLabel2.Visible = false;
-                        _lineEdit1.SetCustomMinimumSize(new(280, 40));
-                        _lineEdit1.Secret = true;
-                        _lineEdit2.Visible = false;
-                        Transient = true;
-                        Exclusive = true;
-                        Visible = true;
-
-                        break;
-
-                    case 6: // Security Answer Entry
-
-                        string encodedQuestion = FileAccess.GetFileAsString("user://Assets/loc/71200e1b9b2258b4.json");
-                        string plainQuestion = Encoding.UTF8.GetString(Convert.FromBase64String(encodedQuestion));
-                        GD.Print("Security Question is ", plainQuestion);
-                        _textInstructionLabel.Text = plainQuestion + "?";
-                        _lineEdit1.Secret = false;
-                        _lineEdit1.SetCustomMinimumSize(new(360, 40));
-
-                        break;
-
-                    case 7: // API Key entry for lost password
-
-                        _textInstructionLabel.Text = "Enter your API key to verify identity:";
-                        _lineEdit1.SetCustomMinimumSize(new(720, 40));
-                        _lineEdit1.Secret = false;
-
-                        break;
-
-                    case 8: // Confirm password disable and API deletion if password, question, and API key fail
-                       string instructionText = "Identity could not be verified. You may disable password protection and delete your API key. You won't be able to connect to Grok until you access your xAI console and get a new API key. Proceed? ";
-                        _textInstructionLabel.Text = instructionText;
-                        _lineEdit1.Visible = false;
-
-                        break;
-
                     case 9: //update CollectionID
                         _textInstructionLabel.Text = "Input the Collection ID for the Collection Search Tool:";
                         _lineLabel1.Visible = false;
@@ -177,7 +103,6 @@ namespace OpenAmi.Scripts
                         Visible = true;
 
                         break;
-
                 }
             }
             catch (Exception e)
@@ -238,7 +163,7 @@ namespace OpenAmi.Scripts
                     {
                         // Encode and save API key;
                         _appManager._apiKey = apiKey;
-                        var apiKeyPath = "user://Assets/loc/0cc27a50c7cc31eb.json";
+                        var apiKeyPath = "user://Context/cached.json";
                         var encodedKey = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(apiKey));
                         using var file = FileAccess.Open(apiKeyPath, FileAccess.ModeFlags.Write);
                         if (file != null)
@@ -305,324 +230,22 @@ namespace OpenAmi.Scripts
                     }
                 break;
 
-                case 3: //Password Setting
-                    try
-                    {
-                        // Step 1: Validate first password from _lineEdit1
-                        string firstPassword = _lineEdit1.Text;
-                        string confirmPassword = _lineEdit2.Text;
-                        if (string.IsNullOrWhiteSpace(firstPassword) || firstPassword.Length < 8)
-                        {
-                            GD.PrintErr("AmiTextEntry.OnConfirmed case 3: First password invalid");
-                            _textInstructionLabel.Text = "Password must be at least 8 characters with no spaces. Please enter again.";
-                            _lineEdit1.Clear();
-                            _lineEdit2.Clear();
-                            return;
-                        }
-
-                        if (firstPassword != confirmPassword)
-                        {
-                            GD.PrintErr("AmiTextEntry.OnConfirmed case 3: Passwords do not match");
-                            _textInstructionLabel.Text = "Passwords do not match. Please enter again.";
-                            _lineEdit1.Clear();
-                            _lineEdit2.Clear();
-                            return;
-                        }
-                        GD.Print("AmiTextEntry.OnConfirmed case 3: First password accepted: ", firstPassword);
-
-                        // Step 2: Hash and save password
-                        string salt = GenerateSalt();
-                        string hashedPassword = HashWithSalt(firstPassword, salt);
-                        string passwordData = $"{salt}:{hashedPassword}";
-                        string encodedPasswordData = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(passwordData));
-                        string passwordFilePath = "user://Assets/loc/a2d6af3e2115a910.json";
-                        using (var passwordFile = FileAccess.Open(passwordFilePath, FileAccess.ModeFlags.Write))
-                        {
-                            if (passwordFile != null)
-                            {
-                                passwordFile.StoreString(encodedPasswordData);
-                                GD.Print("AmiTextEntry.OnConfirmed case 3: Hashed password saved");
-                            }
-                            else
-                            {
-                                GD.PrintErr("AmiTextEntry.OnConfirmed case 3: Failed to save hashed password");
-                                _textInstructionLabel.Text = "Error saving password. Please try again.";
-                                CallTextEntryByUseCase(3); // Re-iterate
-                                return;
-                            }
-                        }
-
-                        // Step 3: Clear and transition to case 4
-                        _lineEdit1.Clear();
-                        _lineEdit2.Clear();
-                        CallTextEntryByUseCase(4);
-                    }
-                    catch (Exception e)
-                    {
-                        GD.PrintErr($"AmiTextEntry.OnConfirmed case 3: Exception: {e.Message}");
-                        _textInstructionLabel.Text = "An error occurred. Please try again.";
-                        CallTextEntryByUseCase(3); // Re-iterate
-                    }
+                case 3: 
                     break;
 
-                case 4: //Set security question and answer
-                    try
-                    {
-                        // Validate security question from _lineEdit1
-                        string securityQuestion = _lineEdit1.Text;
-                        if (string.IsNullOrWhiteSpace(securityQuestion) || securityQuestion.Length > 60)
-                        {
-                            GD.PrintErr("AmiTextEntry.OnConfirmed case 4: Security question invalid");
-                            _textInstructionLabel.Text = "Question must be 1-60 characters. Please enter again.";
-                            _lineEdit1.Text = "";
-                            return;
-                        }
-
-                        string securityAnswer = _lineEdit2.Text;
-                        if (string.IsNullOrWhiteSpace(securityAnswer) || securityAnswer.Length > 60)
-                        {
-                            GD.PrintErr("AmiTextEntry.OnConfirmed case 4: Security answer invalid");
-                            _textInstructionLabel.Text = "Answer must be 1-60 characters. Please enter again.";
-                            _lineEdit2.Text = "";
-                            return;
-                        }
-
-                        //Hash and save question and answer
-                        string encodedQuestionData = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(securityQuestion));
-                        string questionFilePath = "user://Assets/loc/71200e1b9b2258b4.json";
-                        using (var questionFile = FileAccess.Open(questionFilePath, FileAccess.ModeFlags.Write))
-                        {
-                            if (questionFile != null)
-                            {
-                                questionFile.StoreString(encodedQuestionData);
-                                GD.Print("AmiTextEntry.OnConfirmed case 4: Hashed security question saved");
-                            }
-                            else
-                            {
-                                GD.PrintErr("AmiTextEntry.OnConfirmed case 4: Failed to save security question");
-                                _textInstructionLabel.Text = "Error saving question. Please try again.";
-                                CallTextEntryByUseCase(4); // Re-iterate
-                                return;
-                            }
-                        }
-
-                        string answerSalt = GenerateSalt();
-                        string hashedAnswer = HashWithSalt(securityAnswer, answerSalt);
-                        string answerData = $"{answerSalt}:{hashedAnswer}";
-                        string encodedAnswerData = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(answerData));
-                        string answerFilePath = "user://Assets/loc/5852283cdccc2eb3.json";
-                        using (var answerFile = FileAccess.Open(answerFilePath, FileAccess.ModeFlags.Write))
-                        {
-                            if (answerFile != null)
-                            {
-                                answerFile.StoreString(encodedAnswerData);
-                                GD.Print("AmiTextEntry.OnConfirmed case 4: Hashed security answer saved");
-                            }
-                            else
-                            {
-                                GD.PrintErr("AmiTextEntry.OnConfirmed case 4: Failed to save security answer");
-                                _textInstructionLabel.Text = "Error saving answer. Please try again.";
-                                CallTextEntryByUseCase(4); // Re-iterate
-                                return;
-                            }
-                        }
-
-                        var locFile1 = Godot.FileAccess.Open("user://Assets/loc/8c2ad753bdd8f772.json", Godot.FileAccess.ModeFlags.Write);
-                        locFile1.StoreString("Q2hlY2tmaWxlIGlzIEFzc2V0cy9sb2MvODQwZWM0NTM3ODk5YTFhMC5qc29u");
-
-                        var locFile2 = Godot.FileAccess.Open("user://Assets/loc/09cf83c05d537cb5.json", Godot.FileAccess.ModeFlags.Write);
-                        locFile2.StoreString("eyJwYXNzd29yZCI6ICI5Mzg5ZjI4MGQ2YjI4MzVjIn0");
-
-                        //Clear and close (success; config set in Prefs)
-                        _lineEdit1.Text = "";
-                        _lineEdit2.Text = "";
-                        Visible = false;
-
-                        //Update menu check
-
-                        _amiMain._preferencesButton.GetPopup().ToggleItemChecked(2);
-                        _amiMain._outputLabel.Text += "[p][/p][p][code]>AMI: Password protection has been enabled. The application will prompt for a password on startup.[/code][/p]";
-
-                        GD.Print("AmiTextEntry.OnConfirmed case 4: Security Q&A saved successfully");
-                    }
-                    catch (Exception e)
-                    {
-                        GD.PrintErr($"AmiTextEntry.OnConfirmed case 4: Exception: {e.Message}");
-                        _textInstructionLabel.Text = "An error occurred. Please try again.";
-                        CallTextEntryByUseCase(4); // Re-iterate
-                    }
+                case 4: 
                     break;
 
-                case 5: //Password Entry
-                    try
-                    {
-                        // Load and decipher password from user://Assets/loc/a2d6af3e2115a910.json
-                        string encodedPasswordData = Godot.FileAccess.GetFileAsString("user://Assets/loc/a2d6af3e2115a910.json");
-                        string passwordData = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(encodedPasswordData));
-                        string[] parts = passwordData.Split(':');
-                        string storedSalt = parts[0];
-                        string storedHash = parts[1];
-
-                        // Hash user input with stored salt
-                        string userInput = _lineEdit1.Text;
-                        string hashedInput = HashWithSalt(userInput, storedSalt);
-
-                        if (hashedInput == storedHash)
-                        {
-                            // Pass
-                            //GD.Print("AmiTextEntry.OnConfirmed case 5: Password correct");
-                            _lineEdit1.Clear();
-                            _lineEdit1.Secret = false;
-                            EmitSignal("PasswordComplete");
-                            Visible = false;
-                            _retryCount = 0;
-                        }
-                        else
-                        {
-                            // Fail
-                            //GD.PrintErr("AmiTextEntry.OnConfirmed case 5: Password incorrect");
-                            _retryCount++;
-                            _lineEdit1.Clear();
-                            if (_retryCount > 2)
-                            {
-                                _retryCount = 0;
-                                CallTextEntryByUseCase(6);
-                            }
-                            else
-                            {
-                                _textInstructionLabel.Text = $"Incorrect password. {3 - _retryCount} attempts remaining.";
-                                Visible = true;
-                            }
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        GD.PrintErr($"AmiTextEntry.OnConfirmed case 5: Exception: {e.Message}");
-                        CallTextEntryByUseCase(6);
-                    }
+                case 5: 
                     break;
 
-                case 6: // Security Answer Entry
-                    try
-                    {
-                        // Load and display security question
-                        string encodedQuestion = FileAccess.GetFileAsString("user://Assets/loc/71200e1b9b2258b4.json");
-                        string plainQuestion = Encoding.UTF8.GetString(Convert.FromBase64String(encodedQuestion));
-                        GD.Print("Security Question is ", plainQuestion);
-                        _textInstructionLabel.Text = plainQuestion + "?";
-
-                        // Load and decipher answer
-                        string encodedAnswerData = FileAccess.GetFileAsString("user://Assets/loc/5852283cdccc2eb3.json");
-                        string answerData = Encoding.UTF8.GetString(Convert.FromBase64String(encodedAnswerData));
-                        string[] aParts = answerData.Split(':');
-                        string storedSalt = aParts[0];
-                        string storedHash = aParts[1];
-
-                        // Hash user input with stored salt
-                        string userInput = _lineEdit1.Text;
-                        string hashedInput = HashWithSalt(userInput, storedSalt);
-
-                        if (hashedInput == storedHash)
-                        {
-                            // Pass
-                            //GD.Print("AmiTextEntry.OnConfirmed case 6: Answer correct");
-                            _lineEdit1.Clear();
-                            EmitSignal("PasswordComplete");
-                            Visible = false;
-                            _retryCount = 0;
-                        }
-                        else
-                        {
-                            // Fail
-                            //GD.PrintErr("AmiTextEntry.OnConfirmed case 6: Answer incorrect");
-                            _retryCount++;
-                            _lineEdit1.Clear();
-                            if (_retryCount > 2)
-                            {
-                                _retryCount = 0;
-                                CallTextEntryByUseCase(7);
-                            }
-                            else
-                            {
-                                _textInstructionLabel.Text = $"Incorrect answer. {3 - _retryCount} attempts remaining.";
-                                Visible = true;
-                            }
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        GD.PrintErr($"AmiTextEntry.OnConfirmed case 6: Exception: {e.Message}");
-                        CallTextEntryByUseCase(7);
-                    }
+                case 6: 
                     break;
 
-                case 7: // API Key entry for lost password
-                    try
-                    {
-                        string userApiKey = _lineEdit1.Text;
-                        if (userApiKey == _appManager._apiKey)
-                        {
-                            // Pass
-                            //GD.Print("AmiTextEntry.OnConfirmed case 7: API key correct");
-                            _lineEdit1.Clear();
-                            EmitSignal("PasswordComplete");
-                            Visible = false;
-                            _retryCount = 0;
-                        }
-                        else
-                        {
-                            // Fail
-                            //GD.PrintErr("AmiTextEntry.OnConfirmed case 7: API key incorrect");
-                            _retryCount++;
-                            _lineEdit1.Clear();
-                            if (_retryCount > 2)
-                            {
-                                _retryCount = 0;
-                                CallTextEntryByUseCase(8);
-                            }
-                            else
-                            {
-                                _textInstructionLabel.Text = $"Incorrect API key. {3 - _retryCount} attempts remaining.";
-                                Visible = true;
-                            }
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        GD.PrintErr($"AmiTextEntry.OnConfirmed case 7: Exception: {e.Message}");
-                        CallTextEntryByUseCase(8);
-                    }
+                case 7: 
                     break;
 
-                case 8: // Confirm password disable and API deletion
-                    try
-                    {
-                        // Delete files
-                        if (Godot.FileAccess.FileExists("user://Assets/loc/a2d6af3e2115a910.json"))
-                            Godot.DirAccess.RemoveAbsolute(ProjectSettings.GlobalizePath("user://Assets/loc/a2d6af3e2115a910.json"));
-                        if (Godot.FileAccess.FileExists("user://Assets/loc/71200e1b9b2258b4.json"))
-                            Godot.DirAccess.RemoveAbsolute(ProjectSettings.GlobalizePath("user://Assets/loc/71200e1b9b2258b4.json"));
-                        if (Godot.FileAccess.FileExists("user://Assets/loc/5852283cdccc2eb3.json"))
-                            Godot.DirAccess.RemoveAbsolute(ProjectSettings.GlobalizePath("user://Assets/loc/5852283cdccc2eb3.json"));
-                        if (Godot.FileAccess.FileExists("user://Assets/loc/0cc27a50c7cc31eb.json"))
-                            Godot.DirAccess.RemoveAbsolute(ProjectSettings.GlobalizePath("user://Assets/loc/0cc27a50c7cc31eb.json"));
-
-                        // Clear API key
-                        _appManager._apiKey = "";
-
-                        // Toggle menu item
-                        _amiMain._preferencesButton.GetPopup().SetItemChecked(2, false);
-
-                        // Clear and hide
-                        _lineEdit1.Clear();
-                        EmitSignal("PasswordComplete");
-                        Visible = false;
-                        GD.Print("AmiTextEntry.OnConfirmed case 8: Password disabled, API deleted");
-                    }
-                    catch (Exception e)
-                    {
-                        GD.PrintErr($"AmiTextEntry.OnConfirmed case 8: Exception: {e.Message}");
-                    }
+                case 8: 
                     break;
 
                 case 9: //check _lineEdit1 for text, if present, check for  "collection_", if present remove
@@ -661,16 +284,6 @@ namespace OpenAmi.Scripts
 
         private void OnCanceled()
         {
-            if (_useCase > 4 && _useCase < 9)
-            {
-                //quit application
-                GetTree().Quit();
-                GD.Print($"TextEntry: Canceled during password entry. Exited program.");
-                QueueFree();
-
-                return;
-            }
-
             _lineEdit1.Clear();
             _lineEdit2.Clear();
             _lineEdit1.Secret = false;
@@ -678,23 +291,5 @@ namespace OpenAmi.Scripts
             GD.Print($"TextEntry: Canceled for use case {_useCase}. Cleared inputs.");
         }
 
-        // Utility method to generate a random salt
-        private static string GenerateSalt()
-        {
-            byte[] saltBytes = new byte[16];
-            using (var rng = System.Security.Cryptography.RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(saltBytes);
-            }
-            return Convert.ToBase64String(saltBytes);
-        }
-
-        // Utility method to hash input with salt using SHA-256
-        private static string HashWithSalt(string input, string salt)
-        {
-            string saltedInput = salt + input;
-            byte[] hashBytes = SHA256.HashData(Encoding.UTF8.GetBytes(saltedInput));
-            return Convert.ToBase64String(hashBytes);
-        }
     }
 }

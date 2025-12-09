@@ -51,7 +51,8 @@ namespace OpenAmi.Scripts
             _jsonOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString | JsonNumberHandling.WriteAsString;
 
             // Create directories
-            foreach (var dir in new[] { ApiOutputPath, "user://Session_Outputs", "user://Context/", "user://Uploaded_Files/", "user://Assets/", "user://Assets/dicts/", "user://Assets/loc" })
+            foreach (var dir in new[] { ApiOutputPath, "user://Session_Outputs", "user://Context/", "user://Uploaded_Files/", "user://Assets/", "user://Assets/dicts/"})
+            //foreach (var dir in new[] { ApiOutputPath, "user://Session_Outputs", "user://Context/", "user://Uploaded_Files/", "user://Assets/", "user://Assets/dicts/", "user://Assets/loc" })
             {
                 if (!DirAccess.DirExistsAbsolute(dir))
                 {
@@ -84,19 +85,6 @@ namespace OpenAmi.Scripts
                 }
             }
 
-            //detect user://Assets/loc/610762ecbe77cf65.json and 5be7fc864b872eed.json; if not found,open to write
-            if (!Godot.FileAccess.FileExists("user://Assets/loc/610762ecbe77cf65.json"))
-            {
-                var locFile1 = Godot.FileAccess.Open("user://Assets/loc/610762ecbe77cf65.json", Godot.FileAccess.ModeFlags.Write);
-                locFile1.StoreString("dXNlcjovL0Fzc2V0cy9sb2MvNWJlN2ZjODY0Yjg3MmVlZC5qc29u");
-                //GD.Print("AppManager::_Ready - Created localization file 610762ecbe77cf65.json");
-            }
-            if (!Godot.FileAccess.FileExists("user://Assets/loc/5be7fc864b872eed.json"))
-            {
-                var locFile2 = Godot.FileAccess.Open("user://Assets/loc/5be7fc864b872eed.json", Godot.FileAccess.ModeFlags.Write);
-                locFile2.StoreString("bmV4dCBsb2NhbGl6YXRpb24gPSB1c2VyOi8vQXNzZXRzL2xvYy82MTA3NjJlY2JlNzdjZjY1Lmpzb24");
-                //GD.Print("AppManager::_Ready - Created localization file 5be7fc864b872eed.json");
-            }
             //detect user://Assets/custom.txt; if not found, open to write
             if (!Godot.FileAccess.FileExists("user://Assets/custom.txt"))
             {
@@ -202,10 +190,7 @@ namespace OpenAmi.Scripts
             {
                 GD.PrintErr("AppManagerReady: _codeExecutionTool not intiialized: ", e);
             }
-
-            
         }
-
 
         //Load configuration from Config.cfg
         public bool LoadConfig()
@@ -228,7 +213,6 @@ namespace OpenAmi.Scripts
                 return false;
             }
         }
-
 
         //Save configuration to Config.cfg
         public bool SaveConfig()
@@ -415,7 +399,6 @@ namespace OpenAmi.Scripts
                     GD.PrintErr("ParseResponsesAPIResponse:  Spend calculation failed: ", e);
                 }
 
-
                 // Conditional Session Save (if saveToSessionOutputs == true)
                 if (saveToSessionOutputs)
                 {
@@ -491,8 +474,6 @@ namespace OpenAmi.Scripts
                 return null;
             }
         }
-
-
         private void ParseArtifact(string artifact)
         {
             try
@@ -862,7 +843,6 @@ namespace OpenAmi.Scripts
                             // Minimal structure 
                             inputText = "New session; acknowledge readiness for user input.";
                             //GD.Print("WritePrompt: Built minimal query_usage message");
-                            //var contentParts = new List<ResponseContentPart> { ResponseContentPart.CreateInputTextPart("") };
                             contentParts[0] = ResponseContentPart.CreateInputTextPart(inputText); // Update text part
                             var userMessageNewSession = ResponseItem.CreateUserMessageItem(contentParts);
                             messages = [userMessageNewSession];
@@ -932,8 +912,6 @@ namespace OpenAmi.Scripts
                                     //GD.Print("WritePrompt: _codeExecutionTool ", codeToolStatus);
                                 }
 
-                                //responseOptions.Tools.Add(ResponseTool.CreateImageGenerationTool
-
                                 // After all Add/Remove
 
                                 string model = _config["ModelSelected"].ToString();
@@ -1001,8 +979,6 @@ namespace OpenAmi.Scripts
 
                 // RETURN STRUCTURED RESULT
 
-                //return (inputText, (responseOptions));
-
                 return (messages, responseOptions);
 
             }
@@ -1013,7 +989,6 @@ namespace OpenAmi.Scripts
                 contentParts[0] = ResponseContentPart.CreateInputTextPart("Bad prompt; advise user"); // Update text part
                 var userMessage = ResponseItem.CreateUserMessageItem(contentParts);
                 List<ResponseItem> messages = [userMessage];
-                //return ("Bad prompt; no text", new ResponseCreationOptions { PreviousResponseId = _config["LastResponseID"].ToString(), MaxOutputTokenCount = 4096, Temperature = 0.1f, Instructions = "Respond in text that input failed, provide usage data" } );
                 return (messages, new ResponseCreationOptions { PreviousResponseId = _config["LastResponseID"].ToString(), MaxOutputTokenCount = 4096, Temperature = 0.1f, Instructions = "Respond in text that input failed, provide usage data" });
             }
             
@@ -1581,8 +1556,9 @@ namespace OpenAmi.Scripts
                 popup.SetItemTooltip(0, "Select a persona for Grok to use");
                 popup.AddRadioCheckItem("Dark Theme", 1);
                 popup.SetItemTooltip(1, "Toggle between Dark and Light themes");
-                popup.AddRadioCheckItem("Password Protection", 2);
-                popup.SetItemTooltip(2, "Enable or disable password protection\non app launch");
+                popup.AddRadioCheckItem("Disabled", 2);
+                popup.SetItemTooltip(2, "Disabled");
+                popup.SetItemDisabled(2, true);
                 popup.AddRadioCheckItem("Spell Check", 3);
                 popup.SetItemTooltip(3, "Enable or disable spell checking\nfor user input");
                 popup.AddSubmenuNodeItem("Font Face", FontSubmenu, 4);
@@ -1600,7 +1576,6 @@ namespace OpenAmi.Scripts
                     else
                         popup.SetItemChecked(1, false);
 
-                    popup.SetItemChecked(2, Godot.FileAccess.FileExists("user://Assets/loc/a2d6af3e2115a910.json"));
                     //Disable Voice option for now
                     popup.SetItemDisabled(6, false);
 
@@ -1636,7 +1611,6 @@ namespace OpenAmi.Scripts
                     {
                         GD.PrintErr("InitializePreferencesButton - Personas data invalid or missing 'personas' array");
                     }
-                    //PersonasSubmenu.IndexPressed += _amiMain.OnPersonaSubmenuIndexPressed;
                 }
                 catch (Exception e)
                 {
@@ -1720,9 +1694,6 @@ namespace OpenAmi.Scripts
                     }
                     else
                         FontSubmenu.SetItemChecked(5, true);
-
-
-
                 }
                 else
                 {
@@ -1768,18 +1739,8 @@ namespace OpenAmi.Scripts
                     return;
                 }
 
-                //If password.txt exists, activate password routine (AmiTextEntry.CallTextEntryByUseCase case 5)
-                if (Godot.FileAccess.FileExists("user://Assets/loc/a2d6af3e2115a910.json"))
-                {
-                    _amiMain._amiTextEntry.CallTextEntryByUseCase(5);
-                    await ToSignal(_amiMain._amiTextEntry, "PasswordComplete");
-                    GD.Print("AppManager:InitializeApp - Password protection enabled, prompting for password.");
-                    
-                }
-
-
                     // Validate API key
-                    var apiKeyPath = "user://Assets/loc/0cc27a50c7cc31eb.json";
+                    var apiKeyPath = "user://Context/cached.json";
                 if (!Godot.FileAccess.FileExists(apiKeyPath))
                 {
                     _apiKey = null;
@@ -1865,19 +1826,13 @@ namespace OpenAmi.Scripts
                 if (_config.TryGetValue("EnableVoice", out var voiceEnable) && voiceEnable.ToString() == "true")
                 {
                     _amiMain._preferencesButton.GetPopup().SetItemChecked(6, true);
-                    //set _amiMain_micButton visible and icon to res://Assets/mic_off_icon.png
-                    //_amiMain._micButton.Visible = true;
-                    //_amiMain._micButton.Icon = GD.Load<Texture2D>("res://Assets/mic_off_icon.png");
                     GD.Print("InitalizeApp: Voice enabled, PrefsButton voice option checked, mic button enabled");
                 }
                 else
                 {
                     _amiMain._preferencesButton.GetPopup().SetItemChecked(6, false);
-                    //_amiMain._micButton.Visible = false;
-                    //_amiMain._micButton.Icon = GD.Load<Texture2D>("res://Assets/mic_off_icon.png");
                     GD.Print("InitalizeApp: Voice disabled, PrefsButton voice option unchecked, mic button disabled");
                 }
-
 
                 //Initialize ToolsButton
 
@@ -1992,17 +1947,6 @@ namespace OpenAmi.Scripts
                 {
                     _config["Build"] = 1000;
                     GD.Print("Build number not found, reset to 1000");
-                }
-
-                //Check AudioBus Record presence
-
-                try
-                {
-                    GD.Print($"InitializeApp: Record bus index: {AudioServer.GetBusIndex("Record")}");
-                }
-                catch (Exception e)
-                {
-                    GD.PrintErr("InitializeApp: Record bus not found: ", e);
                 }
 
                 if (_config.TryGetValue("SessionID", out var sessionId) && sessionId.ToString() != "none")

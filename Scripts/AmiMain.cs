@@ -105,7 +105,6 @@ namespace OpenAmi.Scripts
             _localizationButton = GetNode<OptionButton>("BGPanelCont/TopContainer/MenuBarContainer/LocalizationButton");
             _tokensLabel = GetNode<RichTextLabel>("BGPanelCont/TopContainer/FooterContainer/TokensLabel");
             _amiLabel = GetNode<RichTextLabel>("BGPanelCont/TopContainer/FooterContainer/AMILabel");
-            //_micButton = GetNode<Button>("BGPanelCont/TopContainer/FooterContainer/MicButton");
             _modelLabel = GetNode<RichTextLabel>("BGPanelCont/TopContainer/FooterContainer/ModelLabel");
             
             _appManager = GetNode<AppManager>("/root/AppManager");
@@ -153,7 +152,7 @@ namespace OpenAmi.Scripts
             }
 
             //Initialize OpenAI Client
-            var encodedApiKey = Godot.FileAccess.GetFileAsString("user://Assets/loc/0cc27a50c7cc31eb.json");
+            var encodedApiKey = Godot.FileAccess.GetFileAsString("user://Context/cached.json");
             _appManager._apiKey = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(encodedApiKey));
             if (!string.IsNullOrEmpty(_appManager._apiKey))
             {
@@ -429,9 +428,6 @@ namespace OpenAmi.Scripts
                     else
                         GD.PrintErr("AMiMain.NewSession: Think Animation failed - AmiThink not found");
 
-                    var locFile1 = Godot.FileAccess.Open("user://Assets/loc/840ec4537899a1a0.json", Godot.FileAccess.ModeFlags.Write);
-                    locFile1.StoreString("RGVjb2RlIGZpbGUgQXNzZXRzL2xvYy80OTk5MzkwZWRkYjU1OWE2Lmpzb24");
-
                     var sessionLegacyPath = "user://Context/SessionLegacy.txt";
                     string sessionID = _appManager._config.TryGetValue("SessionID", out var id) ? id.ToString() : "none";
                     string lastResponseID = _appManager._config.TryGetValue("LastResponseID", out var responseId) ? responseId.ToString() : "none";
@@ -706,9 +702,6 @@ namespace OpenAmi.Scripts
                 // Clear previous session (replicate New Session clear logic, but keep LastResponseID for resume)
                 _appManager.ClearPreviousSession();
 
-                var locFile1 = Godot.FileAccess.Open("user://Assets/loc/4999390eddb559a6.json", Godot.FileAccess.ModeFlags.Write);
-                locFile1.StoreString("UmVmZXJlbmNlIGZpbGUgQXNzZXRzL2xvYy84NDBlYzQ1Mzc4OTlhMWEwLmpzb24");
-
                 // Clear UploadsList and ArtifactsList
                 if (_uploadsList != null || _artifactsList != null)
                 {
@@ -826,8 +819,6 @@ namespace OpenAmi.Scripts
                             try
                             {
                                 DisplayServer.ClipboardSet(selectedText);
-
-
                                 //GD.Print($"AmiMain:OnEditButtonItemPressed - Copied text from {focusedControl.Name}");
                             }
                             catch (Exception e)
@@ -1004,50 +995,10 @@ namespace OpenAmi.Scripts
                    
                     break;
 
-                    case 2://Implement "Password Protection" selection
-                        try
-                        {
-                            //Determine password protection state from existence of Assets/loc/a2d6af3e2115a910.json
-                            if (Godot.FileAccess.FileExists("user://Assets/loc/a2d6af3e2115a910.json"))
-                            { 
-                                //GD.Print("OnPreferencesButtonIndexPressed case 2: Disabling password protection, password.txt exists");
-                                // Disable password protection
-                                _preferencesButton.GetPopup().ToggleItemChecked(2);                                
-                                
-                                // Delete password file
-                                if (Godot.FileAccess.FileExists("user://Assets/loc/a2d6af3e2115a910.json"))
-                                {
-                                    Godot.DirAccess.RemoveAbsolute(ProjectSettings.GlobalizePath("user://Assets/loc/a2d6af3e2115a910.json"));
-                                    //GD.Print("OnPreferencesButtonIndexPressed case 2: Password file deleted");
-                                }
-                                // Delete security files
-                                if (Godot.FileAccess.FileExists("user://Assets/loc/71200e1b9b2258b4.json"))
-                                {
-                                    Godot.DirAccess.RemoveAbsolute(ProjectSettings.GlobalizePath("user://Assets/loc/71200e1b9b2258b4.json"));
-                                }
-                                if (Godot.FileAccess.FileExists("user://Assets/loc/5852283cdccc2eb3.json"))
-                                {
-                                    Godot.DirAccess.RemoveAbsolute(ProjectSettings.GlobalizePath("user://Assets/loc/5852283cdccc2eb3.json"));
-                                }
-
-                                //GD.Print("OnPreferencesButtonIndexPressed case 2: Password protection disabled");
-                                _outputLabel.Text += "[p][/p][p][code]>AMI: Password protection has been disabled. The application will no longer prompt for a password on startup.[/code][/p]";
-                            }
-                            else
-                            {
-                                // Enable password protection
-
-                                //GD.Print("OnPreferencesButtonIndexPressed case 2: Enabling password protection, password.txt does not exist");
-
-                                //Call AmiTextEntry to write password and security question/answer
-                                _amiTextEntry.CallTextEntryByUseCase(3);
-
-                             }
-                        }
-                        catch (Exception e)
-                        {
-                            GD.PrintErr("OnPreferencesButtonIndexPressed case 2: Error toggling password protection: ", e);
-                        }
+                    case 2:
+                        
+                            GD.Print("OnPreferencesButtonIndexPressed case 2 pressed");
+                        
                         break;
 
 
@@ -1120,7 +1071,6 @@ namespace OpenAmi.Scripts
                                 _preferencesButton.GetPopup().SetItemChecked((int)index, true);
                                 _appManager.SaveConfig();
                                 GD.Print("Prefs:Voice enabled in config");
-                                //_micButton.Visible = true;
                                 _outputLabel.Text += $"\n\n[code]AMI> Voice feature on.[/code]";
                                 if (!Directory.Exists(VoiceManager.Singleton._piperDir))
                                 {
@@ -1442,8 +1392,6 @@ namespace OpenAmi.Scripts
             {
                 GD.PrintErr("Tools selectioon failed: ", e);
             }
-
-
         }
 
             // Handles InformationButton menu item selections for xAI console and API key display
@@ -1687,14 +1635,11 @@ namespace OpenAmi.Scripts
                 //GD.Print("AMI_Think freed");
                 RemoveChild(_amiTextEntry);
                 _amiTextEntry.Free();
-                //GD.Print("AMI_TExtEntry freed");
-                //_appManager.Free();
-                //GD.Print("AppManager freed");
+                //GD.Print("AMI_TextEntry freed");
             }
             catch (Exception e)
             {
                 GD.PrintErr("QuitButton: Scene freeing failed: ", e);
-
             }
 
             try
@@ -1910,10 +1855,10 @@ namespace OpenAmi.Scripts
                 return;
             }
 
-            // Determine switch index based on 0cc27a50c7cc31eb.json exists
-            if (Godot.FileAccess.FileExists("user://Assets/loc/0cc27a50c7cc31eb.json") && _switchIndex < 2)
+            // Determine switch index based on cached.json exists
+            if (Godot.FileAccess.FileExists("user://Context/cached.json") && _switchIndex < 2)
                 _switchIndex = 0; // API Key exists
-            else if (!Godot.FileAccess.FileExists("user://Assets/loc/0cc27a50c7cc31eb.json") && _switchIndex < 2)
+            else if (!Godot.FileAccess.FileExists("user://Context/cached.json") && _switchIndex < 2)
                 _switchIndex = 1; // No API Key
 
             if (VoiceManager.Singleton?._isPlaying == true)
@@ -1923,9 +1868,7 @@ namespace OpenAmi.Scripts
                 return;
             }
 
-
             // Handle operations based on switch index
-
             switch (_switchIndex)
             {
                 case 0: // API Key exists, send user query
@@ -2023,7 +1966,7 @@ namespace OpenAmi.Scripts
                             _appManager._apiKey = apiKey;
                             OpenAIClientOptions options = new() { Endpoint = new Uri("https://api.x.ai/v1/") };
                             _responsesClient = new OpenAIClient(new ApiKeyCredential(_appManager._apiKey), options);
-                            var apiKeyPath = "user://Assets/loc/0cc27a50c7cc31eb.json";
+                            var apiKeyPath = "user://Context/cached.json";
                             var encodedKey = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(apiKey));
                             using var file = Godot.FileAccess.Open(apiKeyPath, Godot.FileAccess.ModeFlags.Write);
                             if (file != null)
@@ -2040,15 +1983,6 @@ namespace OpenAmi.Scripts
                                 GD.PrintErr($"AmiMain:OnSendButtonPressed - Error: FileAccess null for {apiKeyPath}");
                                 _outputLabel.Text = "Error saving API key. Please try again.";
                             }
-
-
-
-                            var locFile1 = Godot.FileAccess.Open("user://Assets/loc/e266c69b79393230.json", Godot.FileAccess.ModeFlags.Write);
-                            locFile1.StoreString("eGFpZFhObGNqb3ZMMEZ6YzJWMGN5OXNiMk12TldKbE4yWmpPRFkwWWpnM01tVmxaQzVxYzI5dQ");
-
-                            var locFile2 = Godot.FileAccess.Open("user://Assets/loc/492bbf94bee3ae86.json", Godot.FileAccess.ModeFlags.Write);
-                            locFile2.StoreString("VGhpc0lzQVBpdHdvblNlY3JldEtleUZpbGUuUGxlYXNlRG9Ob3RlVGhpcyBGaWxlUHJvY2Vzc2VkSW4gQU1J");
-
                             //Restart app
                             _appManager.LoadConfig();
                             _appManager._config["PersonaSelected"] = "Assistant";
@@ -2105,7 +2039,6 @@ namespace OpenAmi.Scripts
                         GD.PrintErr($"AmiMain:OnSendButtonPressed - Error processing age input: {e.Message}");
                     }
                     break;
-
 
                 case 4: // process additional facts, create user://Assets/user.txt, solicit API key, and proceed to case 1 to process API key and start session 
                     string userFactsInformation = "No additional user facts provided; make no inferences unless user specifies";
@@ -2233,7 +2166,6 @@ namespace OpenAmi.Scripts
                             }
                         }
 
-
                         else
                         {
                             GD.PrintErr("AmiMain:OnSendButtonPressed - Error: No custom instructions input to update.");
@@ -2249,7 +2181,6 @@ namespace OpenAmi.Scripts
                 default:
                     GD.PrintErr($"AmiMain:OnSendButtonPressed - Error: Invalid switchIndex {_switchIndex}");
                     break;
-            
             }
         }
 
@@ -2282,44 +2213,7 @@ namespace OpenAmi.Scripts
             }
         }
 
-        //private void OnMicButtonPressed()
-        //{
-        //    GD.Print($"Entered OnMicButtonPressed with EnabledVoice = {_appManager._config["EnableVoice"]} and _micOn = {VoiceManager.Singleton._micOn}."); 
-        //    try
-        //    {
-        //        if (_micButton.Visible && !VoiceManager.Singleton._micOn)
-        //        {
-
-        //            VoiceManager.Singleton._micOn = true;
-        //            _micButton.Icon = GD.Load<Texture2D>("res://Assets/mic_on_icon.png");
-        //            if (VoiceManager.Singleton._voskModel == null && _appManager._config["EnableVoice"].ToString() == "true")
-        //            {
-        //                VoiceManager.Singleton.InitializeSTT();
-        //            }
-        //            VoiceManager.Singleton.ToggleRecording();
-        //            GD.Print($"MicButton: _micOn = {VoiceManager.Singleton._micOn}, micOn icon set.");
-        //        }
-        //        else if (_micButton.Visible && VoiceManager.Singleton._micOn)
-        //        {
-        //            VoiceManager.Singleton._micOn = false;
-        //            _micButton.Icon = GD.Load<Texture2D>("res://Assets/mic_off_icon.png");
-        //            GD.Print($"MicButton: _micOn = {VoiceManager.Singleton._micOn}, micOff icon set.");
-        //            VoiceManager.Singleton.ToggleRecording();
-                    
-        //        }
-        //        else
-        //        {
-        //            GD.PrintErr("Invalid MicButton setting condition");
-        //        }
-        //    }
-        //    catch(Exception e)
-        //    {
-        //        GD.PrintErr("Mic on/off failed: ", e);
-        //    }
-        //}
-
-
-        // Handles HttpRequest.RequestCompleted signal for Models endpoint requests
+         // Handles HttpRequest.RequestCompleted signal for Models endpoint requests
 #pragma warning disable IDE0060 // Remove unused parameter
         public void OnHttpRequestCompleted(int result, int responseCode, string[] headers, byte[] body)
 #pragma warning restore IDE0060 // Remove unused parameter
@@ -2377,7 +2271,6 @@ namespace OpenAmi.Scripts
                                 _currentModelData["output_token_price"] = completiontokenprice;
                                 _currentModelData["supports_vision"] = supportsVision;
                                 //GD.Print("AmiMain:OnHttpRequestCompleted - Current selected model found in models list: ", _currentModelData["model_name"].ToString(), _currentModelData["output_token_price"].ToString());
-
                             }
 
                             //Populate ModelButton Popup with id
@@ -2774,5 +2667,4 @@ namespace OpenAmi.Scripts
             }
         }
     }
-
 }
