@@ -1,0 +1,125 @@
+{
+  "SessionButtonText": "  Sesión  ",
+  "SessionButtonTooltipText": "Inicia una nueva sesión con Grok,\nreanuda una sesión o ve ciertos\narchivos.",
+  "SessionButtonPopupIndex0Text": "Nueva Sesión",
+  "SessionButtonPopupIndex1Text": "Reanudar Sesión",
+  "SessionButtonPopupIndex2Text": "Mostrar Contexto de Sesión",
+  "SessionButtonPopupIndex3Text": "Mostrar Consultas",
+  "SessionButtonPopupIndex4Text": "Mostrar Última Prompt",
+  "SessionButtonPopupIndex0Tooltip": "Inicia una nueva sesión,\nguardando la anterior.",
+  "SessionButtonPopupIndex1Tooltip": "Reanuda una sesión\nguardada previamente",
+  "SessionButtonPopupIndex2Tooltip": "Muestra la cadena completa\nde respuestas de la sesión actual",
+  "SessionButtonPopupIndex3Tooltip": "Muestra el historial de\nconsultas de usuario enviadas\nen la sesión actual",
+  "SessionButtonPopupIndex4Tooltip": "Muestra la prompt completa\nenviada en la última solicitud",
+
+  "EditButtonText": "  Editar  ",
+  "EditButtonTooltipText": "Herramientas de edición de texto.",
+  "EditButtonPopupIndex0Text": "Cortar",
+  "EditButtonPopupIndex1Text": "Copiar",
+  "EditButtonPopupIndex2Text": "Pegar",
+  "EditButtonPopupIndex3Text": "Eliminar",
+  "EditButtonPopupIndex4Text": "Seleccionar Todo",
+
+  "PreferencesButtonText": " Preferencias ",
+  "PreferencesButtonTooltipText": "Configura tus preferencias para la interfaz.",
+  "PreferencesButtonPopupIndex0Text": "Persona",
+  "PreferencesButtonPopupIndex1Text": "Tema Oscuro",
+  "PreferencesButtonPopupIndex2Text": "Protección por Contraseña",
+  "PreferencesButtonPopupIndex3Text": "Corrector Ortográfico",
+  "PreferencesButtonPopupIndex4Text": "Fuente",
+  "PreferencesButtonPopupIndex5Text": "Tamaño de Fuente",
+  "PreferencesButtonPopupIndex6Text": "Voz",
+  "PreferencesButtonPopupIndex0Tooltip": "Elige una persona para que use Grok",
+  "PreferencesButtonPopupIndex1Tooltip": "Cambia entre temas Oscuro y Claro",
+  "PreferencesButtonPopupIndex2Tooltip": "Activa o desactiva la protección\npor contraseña al abrir la\naplicación",
+  "PreferencesButtonPopupIndex3Tooltip": "Activa o desactiva la corrección\nortográfica para tu entrada",
+  "PreferencesButtonPopupIndex4Tooltip": "Elige la fuente para la interfaz",
+  "PreferencesButtonPopupIndex5Tooltip": "Ajusta el tamaño de fuente para\nentrada y salida de usuario",
+  "PreferencesButtonPopupIndex6Tooltip": "Activa o desactiva entrada y\nsalida de voz",
+
+  "ModelButtonText": "  Modelo  ",
+  "ModelButtonTooltipText": "Muestra los modelos Grok disponibles\ny te deja elegir uno para tu\npróxima respuesta.",
+
+  "ToolsButtonText": "  Herramientas  ",
+  "ToolsButtonTooltipText": "Herramientas que Grok puede\nusar en tu consulta.",
+  "ToolsButtonPopupIndex0Text": "Todas las Herramientas",
+  "ToolsButtonPopupIndex0Tooltip": "Activa o desactiva todas las herramientas",
+  "ToolsButtonPopupIndex1Text": "Herramienta Búsqueda en Colección",
+  "ToolsButtonPopupIndex1Tooltip": "Activa o desactiva Herramienta\nBúsqueda en Colección",
+  "ToolsButtonPopupIndex2Text": "Herramienta Búsqueda Web",
+  "ToolsButtonPopupIndex2Tooltip": "Activa o desactiva Herramienta\nBúsqueda Web",
+  "ToolsButtonPopupIndex3Text": "Herramienta Ejecución de Código",
+  "ToolsButtonPopupIndex3Tooltip": "Activa o desactiva Herramienta\nEjecución de Código",
+
+  "InformationButtonText": "  Información  ",
+  "InformationButtonTooltipText": "Abre tu consola xAI, actualiza\ntu clave API xAI o edita tu\ninformación de usuario o\ninstrucciones personalizadas.",
+  "InformationButtonPopupIndex0Text": "Abrir tu Consola xAI",
+  "InformationButtonPopupIndex1Text": "Cambiar tu Clave Grok API",
+  "InformationButtonPopupIndex2Text": "Editar Información de Usuario",
+  "InformationButtonPopupIndex3Text": "Instrucciones Personalizadas",
+  "InformationButtonPopupIndex4Text": "Tus Colecciones",
+  "InformationButtonPopupIndex5Text": "Actualizar ID de Colección",
+  "InformationButtonPopupIndex0Tooltip": "Abre una ventana del navegador\na tu consola xAI",
+  "InformationButtonPopupIndex1Tooltip": "Ingresa una nueva Clave\nGrok API",
+  "InformationButtonPopupIndex2Tooltip": "Edita tu información de usuario",
+  "InformationButtonPopupIndex3Tooltip": "Agrega o edita instrucciones\npersonalizadas",
+  "InformationButtonPopupIndex4Tooltip": "Gestiona tus Colecciones",
+  "InformationButtonPopupIndex5Tooltip": "Actualiza tu ID de Colección",
+
+  "HelpButtonText": "  Ayuda  ",
+  "HelpButtonTooltipText": "Algunos temas para ayudarte\na usar AMI.",
+  "HelpButtonPopupIndex0Text": "Usar AMI",
+  "HelpButtonPopupIndex0Tooltip": "Abre la Guía de Usuario de AMIGodot",
+  "HelpButtonPopupIndex1Text": "Acerca de Tokens y Gasto",
+  "HelpButtonPopupIndex1Tooltip": "Aprende más sobre tokens y uso",
+  "HelpButtonPopupIndex2Text": "Usar Grok API",
+  "HelpButtonPopupIndex2Tooltip": "Abre una ventana del navegador\npara ver la documentación de\nGrok API de xAI",
+  "HelpButtonPopupIndex3Text": "Acerca de AMI",
+  "HelpButtonPopupIndex3Tooltip": "Ve información de la aplicación\nAMI y créditos",
+  "HelpButtonPopupIndex4Text": "Acerca de Colecciones",
+  "HelpButtonPopupIndex4Tooltip": "Aprende sobre Colecciones",
+
+  "QuitButtonText": "  Salir  ",
+  "QuitButtonTooltipText": "Cerrar AMI.",
+
+  "LocalizationButtonTooltipText": "El idioma y localidad que has\nseleccionado. Haz clic para\ncambiar.",
+
+  "OutputLabelTooltipText": "Salida de Grok para ti.",
+
+  "OutLabelText": "Artefactos:",
+  "OutLabelTooltipText": "Archivos que Grok ha creado\npara ti. Haz clic en un\nnombre de archivo para verlo\no exportarlo a tu ordenador.",
+
+  "ArtifactsListTooltipText": "Archivos que Grok ha creado\npara ti. Haz clic en un\nnombre de archivo para verlo\no exportarlo a tu ordenador.",
+
+  "InLabel2Text": "Subidas:",
+  "InLabel2TooltipText": "Archivos que has subido a Grok.\nHaz clic en un nombre de\narchivo para verlo.",
+
+  "UploadsListTooltipText": "Archivos que has subido a Grok.\nHaz clic en un nombre de\narchivo para verlo.",
+
+  "UploadButtonTooltipText": "Sube un archivo para que Grok\nlo use durante esta sesión.",
+
+  "BLabelText": "Presupuesto (USD):",
+  "BLabelTooltipText": "El presupuesto que has establecido.",
+
+  "BudgetLabelTooltipText": "El presupuesto que has establecido.",
+
+  "RPLabelText": "Gasto de Respuesta:",
+
+  "SLabelText": "Gasto de Sesión:",
+  "SLabelTooltipText": "El costo total de todas las\nrespuestas desde que comenzó\nesta sesión.",
+
+  "SessionLabelTooltipText": "El costo total de todas las\nrespuestas desde que comenzó\nesta sesión.",
+
+  "RLabelText": "Gasto Total:",
+  "RLabelTooltipText": "El costo total de todas las\nrespuestas desde que actualizó\nsu presupuesto.",
+
+  "RunningLabelTooltipText": "El costo total de todas las\nrespuestas desde que actualizó\nsu presupuesto.",
+
+  "SendButtonTooltipText": "Envía el contenido del Panel de\nEntrada al modelo Grok mostrado\nen la esquina inferior derecha\ny obtén una respuesta.",
+
+  "UpdateButtonTooltipText": "Reinicia tu presupuesto.",
+
+  "TokensLabelTooltipText": "Uso actual de memoria, en tokens.\nVentana de contexto total, tokens\nen caché, tokens de prompt,\ntokens de completado y tokens\nde razonamiento.",
+
+  "ModelLabelTooltipText": "Estado de conexión actual y el\nnombre del modelo Grok de tu\npróxima respuesta. Cambia tu\nmodelo en el menú \"Modelo\"."
+}

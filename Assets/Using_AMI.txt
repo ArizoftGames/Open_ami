@@ -1,0 +1,183 @@
+[center][b][u]AMI User Guide[/u][/b][/center]
+
+[center][p][b][i]AMI IS NOT A PRODUCT OF xAI, NOR DOES xAI SPONSOR, ENDORSE, RECOMMEND, OR PROVIDE SUPPORT FOR AMI.  USE OF TRADEMARKS AND SERVICE MARKS BELONGING TO xAI ARE INTENDED SOLELY TO ACCURATELY IDENTIFY AND ATTRIBUTE OUTPUT FROM GROK API.[/i][/b][/p][/center]
+
+[center][p]AMI (AMI for Grok) is an application for interacting with xAI's Grok AI via the Grok Application Programming Interface.  This is different from interaction with Grok through the X app or through Grok.com (or Grok apps).  For one thing, accessing the API gives you access to more Grok models. It also gives you much more control over what information you give to Grok and how Grok uses that information.  And finally, using the API gives you very fine control over the amount you spend.  There is no free tier of API access,though any free credits you may get from xAI can be used through AMI;  but the actual usability is better than the other access methods available, and with AMI, you'll be able to set a budget for yourself and know exactly how much you've spent on each query and response.
+
+There's a price for everything, of course.  The price of the increased responsiveness and greater usable context window you'll enjoy with AMI is the loss of two things: First, Grok won't remember anything from previous sessions in the present one.  It'll remember the basic user information you give AMI, and any custom instructions you provide;  but you'll have to give it any other information (existing code, coding guidelines, background, etc) that it needs to work with you.  Second, you won't have access to "extras" like Grok Imagine, image generation, or tasks when you're using AMI.  Using AMI doesn't interfere with using these features through other channels, though free access may be limited.  (You can partially mitigate this by uploading some information to online storage and publishing, like a Drive or Dropbox account;  this’ll let Grok refer to the information if you have the Web Search tool enabled.  But the tools do incur slime cost, and anything that Grok reads will still be in the context window.)
+
+Note that AMI, itself, is NOT Grok;  you'll just use AMI to talk to Grok.  You'll type your input into the input window, and Grok's response will be printed in the output window.  If Grok provides you with a file or text object in its response, that file will show up in the "artifacts" window; and you can upload text documents to Grok rather than copying and pasting them in as text;  they'll show up in the "uploads" window. [/p]
+
+[p]This guide provides step-by-step instructions on using the interface, based on its features and tooltips.[/p][/center]
+
+[p][b]Getting Started[/b][/p]
+The first time you launch AMI, it will start a combined setup sequence and tutorial.  The very first thing you'll be asked for is what you want Grok to call you; this can be anything you want.  Next, you'll be asked for your age. This doesn't have to be exact, but it will help Grok frame its replies to you.  Finally, you can tell Grok one or more interesting things about yourself.  Again, this is background, to help Grok frame its responses.  Note that you can skip any or all of these replies by simply pressing the Send button.
+
+Next, you'll get a brief description of the interface, including how to set Grok's persona and enable password protection.
+
+And finally, you'll come to the important stuff; how to connect to Grok.  This connection requires an API key from xAI. To get an API key, you'll need an xAI account.  If you've used Grok via the Grok app or X, you probably have one;  if not, you can set one up by going to Grok.com. (It's important to note, here, that xAI doesn't have anything to do with AMI, and vice versa.  AMI can't log in to your xAI account, and your xAI account status doesn't control AMI;  likewise, the passwords for the two are completely independent.)  You API key serves as your credential for accessing the Grok API;  AMI stores it on your computer, in an enciphered file.  But AMI doesn't control or distribute your API key in any way.
+
+Once you've gotten your API key (you'll need xAI credits to get one; you can buy those from xAI directly or you may get free credits during a promotion), you'll input it into AMI. [b]Important[/b]: You won't be able to recover your API key from either AMI or xAI if you lose it (although you can get another one from xAI).  It is [b]strongly[/b] recommended that you either print it out or save it independently on your device.
+
+Your next interaction will be with Grok!
+
+When AMI launches, it checks for an API key. If none is found, enter your xAI API key in the User Input area (below the Output) and press Send to save it. The app then initializes menus, loads models, and displays a welcome message from Grok. Use the Localization button to select your language, and enable preferences like Dark Theme or Spell Check as needed.
+
+[p][b]Main Menu Bar[/b][/p]
+The menu bar at the top lets you manage sessions, edit text, adjust settings, select models, access info, get help, and change language.
+
+[p][i]Session Management[/i][/p]
+Use the Session button to handle conversations:
+- To start a new session: Click Session > New Session. This clears previous uploads and artifacts, assigns a new session ID, and sends a query to Grok for a fresh start, displaying the response in the Output.  
+- To resume a past session: Click Session > Resume Session, then select from the submenu (shows sessions from the last 30 days). This loads the chosen session's data, clears current lists, and summarizes the session in the Output. You won't see any artifacts or uploads from the previous session in the corresponding windows.  Grok remembers them, though, and you can ask Grok to reprint them if you need to (though doing so will add tokens to the context, and you'll still be charged for those tokens).
+- To view session history: Click Session > Session History to display the full conversation chain in a display window.
+- To view query history: Click Session > Query History to show your past inputs in a display window.
+- To see the last prompt: Click Session > Show Last Prompt to view the full text sent to Grok in a display window.
+
+About sessions:  A "session" is also called a "conversation" or a "thread" in some other AI implementations;  it's a continuous chain of user queries and model responses. It's what allows Grok to answer in way that makes sense of previous inputs.  Every word you type, and every word of every document you upload, and every word of the basic instructions that Grok receives at the beginning of the session is added to every word of Grok's response;  and all of this is carried into EVERY query and response.  Tokens are the units used to measure the size of these groups, and "prompt tokens" are the total of the entire conversation plus your current query.  Each time you start AMI, you'll be starting in the session that was in progress when you turned it off last time. 
+
+Within the session context (or "response chain"), each response is identified with a specific number (like 1064f1d6-884e-48f1-1a33-88d9581a548a).  This is the Response ID, and it's how Grok tracks sessions and responses.  You can cite this number to Grok, and it'll be able to specifically identify this response and its contents more quickly and accurately than by just scanning the entire chain. 
+
+For more information about tokens and usage, click "About Tokens and Spend." 
+
+[p][i]Text Editing[/i][/p]
+Focus on the Output or User Input area, then use Edit:
+- Cut: Select text and click Edit > Cut to remove it.
+- Copy: Select text and click Edit > Copy to place it on the clipboard.
+- Paste: Click Edit > Paste to insert clipboard text at the cursor.
+- Delete: Select text and click Edit > Delete to remove it.
+- Select All: Click Edit > Select All to highlight all text in the focused area.
+
+[p][i]Preferences[/i][/p]
+Customize AMI via Preferences:
+- Personas: Click Preferences > Personas to choose a persona for Grok (affects responses).
+  
+About Personas:  Personas are the general rules that Grok tries to follow in interacting with you.  These are set pretty firmly at the start of the session.  If you change personas during the session and continue that session, you may find that Grok "mixes" the styles in responding.  When you start a new session, the most recently selected persona will take full effect.
+
+- Dark Theme: Toggle Preferences > Dark Theme to switch between light and dark modes, changing icons and styles.
+- Password Protection: Toggle Preferences > Password Protection to enable/disable a password prompt on startup (requires setting a password and security question).  Note that disabling password protection has the effect of deleting your password;  you'll need to enter a new one to re-enable it.  This is also how you'll change your password;  disable protection, then re-enable it and enter your new password.
+
+A note on security:  While you can password-protect AMI, AMI's security is akin to locking your car doors when you park it.  It'll stop casual intrusion by people who may have access to your machine (either physical or remote) but no practical amount of security can stop a determined attacker from accessing information in any application.  Your best defense with AMI, as with any application, is to follow general good online safety precautions:
+
+Never provide sensitive financial information to Grok; there is no scenario in which Grok will ask for it.
+
+Your xAI account will be paid through a trusted payment processor, and separately from AMI (directly in your xAI console).
+
+Never share your xAI password (or your AMI password) with Grok; again, there is no reason for Grok ever to request that information, nor any way for Grok to use it.
+
+If you ever are asked for financials during a Grok interaction, close AMI and notify support@xAI immediately.  It's not Grok, and it's not AMI.
+
+If it's feasible for your use case, pre-purchase credits (from xAI using a payment processor you trust) and keep the balance fairly low.  If your use case requires invoicing, set a spend limit.
+
+If others that don't need AMI access have access the device on which you use AMI, enable password protection.  Don't give your API key to anyone that doesn't need to use your xAI account.  Anyone with the password to your AMI app, or your API key, can use your credits on ANY Grok model listed.
+
+[b]Important[/b]: If you lose your password and your security question answer, you'll be able to verify your identitiy by entering your API key.  If you aren't able to do this, you'll be given a choice to disable password protection; however, doing so will delete your current API key.  You won't be able to access Grok until you input a working API key.
+
+- Spell Check: Toggle Preferences > Spell Check to enable/disable checking in User Input; right-click misspelled words for suggestions.
+- Font Face: Click Preferences > Font Face to select a font for the interface.
+- Font Size: Click Preferences > Font Size to adjust text size in input and output areas.
+- Voice: Toggles the Grok Voice feature on and off (only available in the AMI Premium Plus edition).  Note that you MUST have Python 3.9+ installed on your system to use the voice feature.  You’ll also need the pip module.  Piper is already built on your system; to install the Piper module to your Python installation, open a command prompt on your operating system and type:
+ pip install piper-tts
+Voice is audio only; there is no current microphone functionality in AMI. 
+
+
+[p][i]Model Selection[/i][/p]
+Click Model to see available Grok models (like grok-4-fast-non-reasoning). Select one to use for responses; the choice affects speed and reasoning.
+
+Note:  If the model you're using starts to loop around an answer or fixate on a specific topic, or if you feel like progress is being stalled, tell Grok to "Enter troubleshooting mode" in exactly those words.  This will enforce on Grok a behavior of answering in yes-or-no fashion, or at most one sentence.  When using troubleshooting mode, use specific language, single questions (preferably yes-or-no), and target your questions to elicit specific information, like "Why did you answer xxxxx?" or "Are you able to access filename.ext?"  This will frequently kick Grok out of looping or fixating behaviors, especially if you direct it to break them.  When you no longer need troubleshooting mode, direct Grok to "suspend troubleshooting mode" again, in those words.  This will restore normal behavior.  Note that "troubleshooting mode" is an AMI feature, and not generally part of Grok interactions in other interfaces.
+
+[p][i]Tools[/i][/p]
+There are several tools that you can allow Grok to use that can improve its ability to perform tasks for you:
+-Collection Search:  You can authorize some Grok models to search independedntly through one of your Collections for applicable information.  This can be very useful for things like background information, coding standards, and documentation, since it means you don't always have to upload the entire document for Grok to have access to it.  Costs $5 per 1000 uses (USD $0.005 per use).
+-Web Search:  You can authorize some Grok models to search the web for current information.  Even without this tool, Grok can go to some webpages when you provide the URL explicitly, but this allows Grok to conduct independednt searches to supplement (or replace) its training data (which may be out of date). Costs $5 per 1000 uses (USD $0.005 per use)
+-Code Execution: The Code Execution tool lets some Grok models write thier own scripts to solve problems.  This lets them quickly and accurately solve complex math and physics problem, and can help in validating code or other logical implementations.  Costs $5 per 1000 uses (USD $0.005 per use).
+
+[b]About Collections[/b]:  Collections are an exclusive xAI feature.  A Collection is, in effect, a cloud-based repository for documents that some Grok models can use to search for relevant data; a bookshelf for Grok's reference. Each Collection may hold up to 100,000 files; you are allowed as many Collections as you like.  Be aware, though, that you'll have to set up your Collections directly in your xAI console, and you'll also have to manage their contents there (add or remove documents).  You can only set Grok up with the ability to access one Collection at a time, by entering the Collection ID (from the Collections tab of your console) using Information > Update Your Collection ID (just the number; don't enter the "collection_" preface).
+
+[p][i]Information and Help[/i][/p]
+- Information: Open your xAI Console in a browser, input/change your GrokAPI Key, update your user information or custom instructions, manage your Collections, or update your Collection ID.
+- Help: Click Using AMI to display this guide; About Tokens and Spend to learn about usage costs; Using GrokAPI to open xAI docs; About AMI for application information, version, and credits; About Collections for a brief overview of the xAI Collections feature.
+
+[p][i]Localization[/i][/p]
+Click the Localization button to switch languages (e.g., English (US)), which updates spell checking and UI text.
+
+[p][b]Main Interface[/b][/p]
+
+[p][i]Output Area[/i][/p]
+Grok's responses appear here. Click links to open them, and use Edit tools if needed.
+
+[p][i]User Input Area[/i][/p]
+Type your questions or commands here (starts with ">"). Press Send to query Grok. If spell check is on, right-click words for corrections. Uploaded files are included automatically.
+
+[p][i]Artifacts and Uploads[/i][/p]
+- Artifacts List: Shows files Grok creates. Click a name to view/export it. 
+
+Note that Grok has specific instructions in AMI about artifact handling; to request an artifact, ask Grok to "please output" the artifact, and it helps if you assign a filename and format (like text, markdown, code, etc.) during the request.  Grok should output the requested output in a format that looks like:
+
++++++ (five plus symbols)
+Filename.extension
+===== (five equals signs)
+The body of the file
++++++ (five plusses)
+
+Although you won't see this.  The artifact will appear by filename in the Artifacts window to the right of the output area;  click on the filename to view it, copy it whole, or export it to another directory of your system.
+
+This is the precise format that allows AMI to recognize an artifact in Grok's output and extract it to a file that you can use independently of the AMI session.  If Grok doesn't follow this format, the artifact won't be extracted and displayed correctly.  If you have a problem seeing an artifact, ask Grok to present it in exactly this format and cite the ARTIFACT HANDLING section of its instructions.  (You'll never see the +++++ delimiter; AMI automatically removes that and any text following it until it sees another +++++ delimiter.  You'll know there's a problem if the requested file fails to display in the Artifacts window.)
+ 
+- Uploads List: Shows files you've added. Click to view.
+To upload: Click Upload File, browse and select a text file; it saves to uploads and lists it for Grok to use.  You can only upload one file per query;  selecting a second document causes it to overwrite the first.
+
+You can also upload images for Grok to analyze.  Images must be .png, .jpg/jpeg, or .gif format and smaller than 20MB.  Note that only Grok models with “image” input modalities (or “vision”) can analyze images.
+
+You can upload files with the following extensions:
+.txt, .json, .md, .csv
+.cc, .cpp, .cs, .py, .gd, .tscn
+.html, .css, .xaml
+.png, .jpg/jpeg, and .gif (to “vision” models only; those with “image understanding”. See the xAI “Models” page).
+
+
+[p][i]The Display Window[/i][/p]
+Clicking on an artifact or upload to view it will cause it to appear in a new "display" window.  You can select text in this window and copy it to the clipboard using the right-click menu or hotkeys.  You can also use the "copy" button (which copies the entire document to the clipboard) or export the document to a folder on your system.
+
+[p][b]Tracking Costs[/b][/p]
+Monitor spend in the info panel:
+- Budget: Your set limit; turns red if below the threshold you've set.
+- Response Spend: Cost of the last reply.
+- Session Spend: Total for this session.
+- Running Spend: Total since budget reset.
+Click Update Budget to reset your limit and alarm threshold.  The costs displayed here are estimates, calculated within AMI using the token usages of each response and the pricing listed by xAI for the model in use.  All spend information is shown in USD; xAI's pricing is provided in USD. Infrequently, Grok may use tools that xAI charges separately from token usage; these usages aren't provided by xAI in the model's response, so they aren't accounted for in the spend information. You can get your exact spend and usage from your xAI console.
+
+[p][i]Sending Queries[/i][/p]
+Type in User Input and click Send. This sends to the selected model, shows a thinking animation, and displays the response with updated costs and tokens.
+
+[p][b]Footer Details[/b][/p]
+- Tokens Label: Displays usage: Context (total tokens), Cached (reused), Prompt (input), Completion (output), Reasoning (thinking).  Token usage displays are exact, provided by xAI.  When you're just starting out, it's useful to use the Tokenizer in the xAI console to get a feel for how tokens are defined and applied; you'll probably be surprised at how quickly you start thinking in terms of token usage.
+
+[b]About Context[/b]: The term "Context" or "Context Window" generally means the entire size of the prompt read by Grok on each query; as was pointed out in Sessions, above, this is the combination of all of the user's queries, inputs, and instructions, all of AMI's instructions, and all of Grok's output.  This is additive, so if your last prompt was 45000 tokens, Grok's response was 600, and your new query is 350, your new context window will be 45,950 tokens.  Cached tokens are those that Grok has to carry in the response chain for future use, but didn't need to refer to in the current response; they are charged at a much lower price than prompt tokens.  AMI's standard instructions to Grok are to cache data where possible, while using what's necessary to avoid inference (or  "hallucination").  Output tokens are what Grok adds to the conversation, including any artifacts and any reasoning the model performs. Note, even though xAI charges output price for the reasoning, AMI doesn't display it.  In part, this is a technical decision; but it's mostly because the reasoning text is rarely reflective of the final output, and can be distracting.
+
+All of this information is important, and you'll likely use all of it at one time or another.  But the most significant to both performance and cost is the size of the context window.  On the "Models" page, xAI lists the "Context Window" for each model (for example, grok-code-fast-1 lists a context window of 256,000 tokens).  This is the number at which Grok will start to actively truncate the prompt, removing text (generally from the beginning) to keep it within that size.  That text simply ceases to exist, for Grok.  But that number is not the whole story.  The "fast" or "mini" models are much more economical to use than the "full" models;  the reason for that is that they're optimized for minimum resource usage and fast processing.  The result in terms of performance is that they skim, rather than deep read, the prompts.  So that when the context window starts to approach 55-60,000 tokens, you'll probably notice the model missing data or inferring in place of using provided inputs.  You can correct this, by providing Grok with direct references to input in the response chain.  By the time you reach about 75,000 -80,000 tokens, on an economy model, you may find that you're reaching a point where you're adding more tokens (and cost) to the session by repeating input than you're gaining in useful output.  At this point, the session is still useful for conversation and web searches, but any work that requires consistent reference to previous input (like coding or debugging) will probably suffer.
+
+This is the biggest reason that Grok's AMI implementation doesn't carry cross-session context (that is, doesn't remember other sessions);  to do so takes up context window.  For light usage, typically no more than one or two prompts a day, that's probably fine.  But for daily usage as a coding assistant, that cross-session context rapidly consumes the context window.  Therefore, the decision was made that, except for the basic user information and brief instructions, the user should be allowed to define the session's working context.
+
+What's this mean in terms of real work?  Generally, experimentation shows that starting context of 1500 lines of existing code, a 2000-word guidance document, and another 2000 words of solution context leaves plenty of room for two evolutions of code planning (from requirements to a pseudocode plan) and approval, and final code production, assuming the final code in each evolution comes out to about 500 lines.  This includes some debugging;  though due to its iterative nature, debugging is the most token-intensive part.  The more that can be accomplished without Grok's support, the better.  Also, the more related each prompt is to the general course of the session, the better; frequent and drastic changes of subject matter are better dealt with in separate sessions, as Grok can follow the context more easily.
+
+- Model Label: Shows connection icon and selected model name.
+
+Troubleshooting Error Codes:
+
+Occasionally a query sent to the Grok API will return an error (Grok uses the standard HTTP error codes for responses).  The ones you’re most likely to see are:
+
+Error 400: Bad Request
+
+This usually means that the model you’ve queried isn’t able to process something in the query. This might happen when you send an image to a model not capable of handling vision, or enable tool usage on a model that can’t use the tool.  The best remedy for this error is to change the model to which you’re sending the query or to turn off tool usage.  If you’ve previously sent an image in a session, and send to a non-vision model, this may occur when you start AMI; if so, either change the model or start a new session.
+
+Error 403: Forbidden
+
+This usually means that the model is unable to process the query internally.  It can be because the model’s content filter has triggered, though this is very rare;  usually only in cases of severe illegality or danger to others.  It can also mean that you’ve triggered something that violates the model’s algorithms; it can happen when you demonstrate to the model (especially newer models or those recently updated) that it has presented an impossibility or logical fallacy.  Repeating the same query will result in the same response; the best fix is to rephrase the query, or ask the model how the query was forbidden.
+
+Error 404: Not found
+
+This most likely means that either the model to which you’re sending queries is offline.  It can also mean that the Grok API as a whole is offline.  Try changing models, or check the status of the API in the lower left corner of  the xAI Docs pages (the Using GrokAPI selection on the Help tab).  If you can’t connect to the xAI Console or docs, check your internet connection.
+
+
+-Refer to tooltips for quick help, or xAI docs for API details.

@@ -1,0 +1,40 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Open_ami"
+config/description="Open source AMI"
+run/main_scene="uid://cq4u0xbc3yaoc"
+config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
+config/icon="uid://da12x6db4oyad"
+
+[autoload]
+
+AppManager="*res://Scripts/AppManager.cs"
+VoiceManager="*res://Scripts/VoiceManager.cs"
+
+[display]
+
+window/size/viewport_width=2560
+window/size/viewport_height=1440
+window/size/mode=2
+window/size/extend_to_title=true
+window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
+
+[dotnet]
+
+project/assembly_name="Open_ami"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

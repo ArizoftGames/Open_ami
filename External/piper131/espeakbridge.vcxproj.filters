@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\GrokAPI\AMIGodot\External\piper131\src\piper\espeakbridge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{04DC36BC-5A0D-3DD2-AA0B-EA3B8682CAF4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

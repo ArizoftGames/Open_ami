@@ -1,0 +1,468 @@
+[gd_scene load_steps=12 format=3 uid="uid://cq4u0xbc3yaoc"]
+
+[ext_resource type="Theme" uid="uid://djgjstupcybl8" path="res://Resources/AMI_Theme.tres" id="1_gbejk"]
+[ext_resource type="Script" uid="uid://d1ndutjyk74sp" path="res://Scripts/AmiMain.cs" id="2_e1tpx"]
+[ext_resource type="Texture2D" uid="uid://dtobgbrtqwua3" path="res://Assets/dicts/icons/us.png" id="7_1ref0"]
+[ext_resource type="Texture2D" uid="uid://b16mfulaeojij" path="res://Assets/dicts/icons/au.png" id="8_cd7nl"]
+[ext_resource type="Texture2D" uid="uid://vyhlbigpgw2t" path="res://Assets/dicts/icons/de.png" id="8_n7u6n"]
+[ext_resource type="Texture2D" uid="uid://divxlhsk0u26" path="res://Assets/dicts/icons/ca.png" id="9_te2ga"]
+[ext_resource type="Texture2D" uid="uid://d0l11j7gk2e26" path="res://Assets/dicts/icons/gb.png" id="10_6j75i"]
+[ext_resource type="Texture2D" uid="uid://dby5qponvy47n" path="res://Assets/dicts/icons/za.png" id="12_nv5n2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ref0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n7u6n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfus3"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(2560, 1440)
+layout_mode = 3
+anchor_right = 0.667
+anchor_bottom = 0.667
+offset_right = 852.48
+offset_bottom = 479.52
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme = ExtResource("1_gbejk")
+script = ExtResource("2_e1tpx")
+
+[node name="BGPanelCont" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopContainer" type="VBoxContainer" parent="BGPanelCont"]
+layout_mode = 2
+
+[node name="MenuBarContainer" type="HBoxContainer" parent="BGPanelCont/TopContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 35.0
+
+[node name="SessionButton" type="MenuButton" parent="BGPanelCont/TopContainer/MenuBarContainer"]
+layout_mode = 2
+tooltip_text = "Start a new session with Grok, resume a session, or view certain archives."
+text = "  Session  "
+flat = false
+switch_on_hover = true
+item_count = 5
+popup/item_0/text = "New Session"
+popup/item_0/id = 0
+popup/item_1/text = "Resume Session"
+popup/item_1/id = 1
+popup/item_2/text = "Session History"
+popup/item_2/id = 2
+popup/item_3/text = "Query History"
+popup/item_3/id = 3
+popup/item_4/text = "Show Last Prompt"
+popup/item_4/id = 4
+
+[node name="EditButton" type="MenuButton" parent="BGPanelCont/TopContainer/MenuBarContainer"]
+layout_mode = 2
+tooltip_text = "Text editing tools."
+text = "  Edit  "
+flat = false
+switch_on_hover = true
+item_count = 5
+popup/item_0/text = "Cut"
+popup/item_0/id = 0
+popup/item_1/text = "Copy"
+popup/item_1/id = 1
+popup/item_2/text = "Paste"
+popup/item_2/id = 2
+popup/item_3/text = "Delete"
+popup/item_3/id = 3
+popup/item_4/text = "Select All"
+popup/item_4/id = 4
+
+[node name="PreferencesButton" type="MenuButton" parent="BGPanelCont/TopContainer/MenuBarContainer"]
+layout_mode = 2
+tooltip_text = "Set your preferences for the 
+interface."
+text = " Preferences "
+flat = false
+switch_on_hover = true
+item_count = 6
+popup/item_0/text = "Persona"
+popup/item_0/id = 0
+popup/item_1/text = "Dark Theme"
+popup/item_1/checkable = 2
+popup/item_1/checked = true
+popup/item_1/id = 1
+popup/item_2/text = "Password Protection"
+popup/item_2/checkable = 2
+popup/item_2/id = 2
+popup/item_3/text = "Spell Check"
+popup/item_3/checkable = 2
+popup/item_3/checked = true
+popup/item_3/id = 3
+popup/item_4/text = "Font"
+popup/item_4/id = 4
+popup/item_5/text = "Voice"
+popup/item_5/checkable = 2
+popup/item_5/id = 5
+popup/item_5/disabled = true
+
+[node name="ModelButton" type="MenuButton" parent="BGPanelCont/TopContainer/MenuBarContainer"]
+layout_mode = 2
+tooltip_text = "Shows the Grok models available 
+to you and allows you to select one 
+for your next response."
+text = "  Model  "
+flat = false
+switch_on_hover = true
+item_count = 6
+popup/item_0/text = "grok-code-fast-1"
+popup/item_0/checkable = 1
+popup/item_0/checked = true
+popup/item_0/id = 0
+popup/item_1/text = "grok-4-fast-reasoning"
+popup/item_1/checkable = 1
+popup/item_1/id = 1
+popup/item_2/text = "grok-4-fast-non-reasoning"
+popup/item_2/checkable = 1
+popup/item_2/id = 2
+popup/item_3/text = "grok-4-0709"
+popup/item_3/checkable = 1
+popup/item_3/id = 3
+popup/item_4/text = "grok-3-mini"
+popup/item_4/checkable = 1
+popup/item_4/id = 4
+popup/item_5/text = "grok-3"
+popup/item_5/checkable = 1
+popup/item_5/id = 5
+
+[node name="InformationButton" type="MenuButton" parent="BGPanelCont/TopContainer/MenuBarContainer"]
+layout_mode = 2
+tooltip_text = "Open your xAI console or input your xAI API Key or xAI Management API Key."
+text = "  Information  "
+flat = false
+switch_on_hover = true
+item_count = 4
+popup/item_0/text = "Open your xAI Console"
+popup/item_0/id = 0
+popup/item_1/text = "Change your GrokAPI Key"
+popup/item_1/id = 1
+popup/item_2/text = "Modify User Information"
+popup/item_2/id = 2
+popup/item_3/text = "Custom Instructions"
+popup/item_3/id = 3
+
+[node name="HelpButton" type="MenuButton" parent="BGPanelCont/TopContainer/MenuBarContainer"]
+layout_mode = 2
+tooltip_text = "Some topics to help you use AMI."
+text = "  Help  "
+flat = false
+switch_on_hover = true
+item_count = 4
+popup/item_0/text = "Using AMI"
+popup/item_0/id = 0
+popup/item_1/text = "About Tokens and Spend"
+popup/item_1/id = 1
+popup/item_2/text = "Using GrokAPI"
+popup/item_2/id = 2
+popup/item_3/text = "About AMI"
+popup/item_3/id = 3
+
+[node name="QuitButton" type="Button" parent="BGPanelCont/TopContainer/MenuBarContainer"]
+layout_mode = 2
+tooltip_text = "Close AMI."
+theme_type_variation = &"FlatButton"
+text = "  Quit  "
+
+[node name="LocalizationButton" type="OptionButton" parent="BGPanelCont/TopContainer/MenuBarContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+tooltip_text = "The language and locality you've selected.  Click to change."
+flat = true
+alignment = 2
+icon_alignment = 2
+expand_icon = true
+selected = 4
+allow_reselect = true
+item_count = 6
+popup/item_0/text = "Deutsch (DE)"
+popup/item_0/icon = ExtResource("8_n7u6n")
+popup/item_0/id = 0
+popup/item_1/text = "English (AU)"
+popup/item_1/icon = ExtResource("8_cd7nl")
+popup/item_1/id = 1
+popup/item_2/text = "English (CA)"
+popup/item_2/icon = ExtResource("9_te2ga")
+popup/item_2/id = 2
+popup/item_3/text = "English (UK)"
+popup/item_3/icon = ExtResource("10_6j75i")
+popup/item_3/id = 3
+popup/item_4/text = "English (US)"
+popup/item_4/icon = ExtResource("7_1ref0")
+popup/item_4/id = 4
+popup/item_5/text = "English (ZA)"
+popup/item_5/icon = ExtResource("12_nv5n2")
+popup/item_5/id = 5
+
+[node name="DisplaysContainer" type="HBoxContainer" parent="BGPanelCont/TopContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 930.0
+
+[node name="TextBoxDisplays" type="VBoxContainer" parent="BGPanelCont/TopContainer/DisplaysContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="OutputLabel" type="RichTextLabel" parent="BGPanelCont/TopContainer/DisplaysContainer/TextBoxDisplays"]
+custom_minimum_size = Vector2(1880, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+tooltip_text = "Grok's output to you."
+focus_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 1
+theme_type_variation = &"OutputLabel"
+bbcode_enabled = true
+context_menu_enabled = true
+selection_enabled = true
+
+[node name="UserInputTextEdit" type="TextEdit" parent="BGPanelCont/TopContainer/DisplaysContainer/TextBoxDisplays"]
+custom_minimum_size = Vector2(1880, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+placeholder_text = ">"
+wrap_mode = 1
+caret_blink = true
+caret_blink_interval = 0.33
+caret_draw_when_editable_disabled = true
+caret_multiple = false
+
+[node name="InfoDisplays" type="VBoxContainer" parent="BGPanelCont/TopContainer/DisplaysContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OutLabel" type="Label" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays"]
+layout_mode = 2
+tooltip_text = "Files Grok has created for you. Click 
+a filename to view or export it to your computer."
+mouse_filter = 1
+theme_override_font_sizes/font_size = 28
+text = "Artifacts:"
+
+[node name="ArtifactsList" type="ItemList" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays"]
+custom_minimum_size = Vector2(600, 340)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+tooltip_text = "Files Grok has created for you. Click 
+a filename to view or export it to your computer.
+"
+allow_reselect = true
+
+[node name="InLabel2" type="Label" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays"]
+layout_mode = 2
+tooltip_text = "Files you've uploaded to Grok. Click 
+a filename to view it."
+mouse_filter = 1
+theme_override_font_sizes/font_size = 28
+text = "Uploads:"
+
+[node name="UploadsList" type="ItemList" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays"]
+custom_minimum_size = Vector2(600, 340)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+tooltip_text = "Files you've uploaded to Grok. Click 
+a filename to view it.
+"
+allow_reselect = true
+wraparound_items = false
+
+[node name="UploadButton" type="Button" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays"]
+custom_minimum_size = Vector2(480, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+tooltip_text = "Upload a file for Grok to use during
+this session."
+text = "Upload File"
+
+[node name="SpendInfoCont" type="VBoxContainer" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays"]
+custom_minimum_size = Vector2(600, 160)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.9
+
+[node name="BudgetCont" type="HBoxContainer" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/SpendInfoCont"]
+layout_mode = 2
+
+[node name="BLabel" type="Label" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/SpendInfoCont/BudgetCont"]
+layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "The budget you've set."
+mouse_filter = 1
+text = "Budget (USD):"
+
+[node name="BudgetLabel" type="Label" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/SpendInfoCont/BudgetCont"]
+layout_mode = 2
+size_flags_horizontal = 10
+tooltip_text = "The budget you've set."
+mouse_filter = 1
+text = "$000.00"
+horizontal_alignment = 2
+
+[node name="ResponseCont" type="HBoxContainer" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/SpendInfoCont"]
+layout_mode = 2
+
+[node name="RPLabel" type="Label" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/SpendInfoCont/ResponseCont"]
+layout_mode = 2
+text = "Response Spend:"
+
+[node name="ResponseLabel" type="Label" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/SpendInfoCont/ResponseCont"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "$000.00"
+horizontal_alignment = 2
+
+[node name="SessionCont" type="HBoxContainer" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/SpendInfoCont"]
+layout_mode = 2
+
+[node name="SLabel" type="Label" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/SpendInfoCont/SessionCont"]
+layout_mode = 2
+tooltip_text = "The total cost of all responses since 
+this session began."
+mouse_filter = 1
+text = "Session Spend:"
+
+[node name="SessionLabel" type="Label" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/SpendInfoCont/SessionCont"]
+layout_mode = 2
+size_flags_horizontal = 10
+tooltip_text = "The total cost of all responses since 
+this session began."
+mouse_filter = 1
+text = "$000.00"
+horizontal_alignment = 2
+
+[node name="RunningCont" type="HBoxContainer" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/SpendInfoCont"]
+layout_mode = 2
+
+[node name="RLabel" type="Label" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/SpendInfoCont/RunningCont"]
+layout_mode = 2
+tooltip_text = "The total cost of all responses since 
+your budget was updated."
+mouse_filter = 1
+text = "Running Spend:"
+
+[node name="RunningLabel" type="Label" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/SpendInfoCont/RunningCont"]
+layout_mode = 2
+size_flags_horizontal = 10
+tooltip_text = "The total cost of all responses since 
+your budget was updated."
+mouse_filter = 1
+text = "$000.00"
+horizontal_alignment = 2
+
+[node name="IOButtonsCont" type="HBoxContainer" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays"]
+custom_minimum_size = Vector2(600, 160)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.85
+alignment = 1
+
+[node name="SendButton" type="Button" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/IOButtonsCont"]
+custom_minimum_size = Vector2(240, 140)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+tooltip_text = "Send the contents of the Input 
+Panel to the Grok model shown at 
+the lower right and get a response."
+text = "Send Query"
+
+[node name="UpdateButton" type="Button" parent="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/IOButtonsCont"]
+custom_minimum_size = Vector2(240, 140)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+tooltip_text = "Reset your budget."
+action_mode = 0
+text = "Update Budget"
+autowrap_mode = 2
+
+[node name="FooterContainer" type="HBoxContainer" parent="BGPanelCont/TopContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+alignment = 1
+
+[node name="AMILabel" type="RichTextLabel" parent="BGPanelCont/TopContainer/FooterContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1ref0")
+bbcode_enabled = true
+text = "[left][img=50%]res://Assets/grok_dark.png[/img]  AMI for Grok, powered by  [img=50%]res://Assets/xai_dark.png[/img][/left]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="TokensLabel" type="RichTextLabel" parent="BGPanelCont/TopContainer/FooterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.2
+tooltip_text = "Current memory usage, in tokens.  
+Total context window, cached 
+tokens, prompt tokens, completion 
+tokens, and reasoning tokens.
+"
+theme_override_font_sizes/normal_font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n7u6n")
+bbcode_enabled = true
+text = "Context: 0000K  Usage: 0000K [img=40%]res://Assets/cache_icon.png[/img]  0000K [img=50%]res://Assets/prompt_icon_dark.png[/img]  0000K [img=50%]res://Assets/output_icon_dark.png[/img]  0000K [img=40%]res://Assets/reasoning_icon.png[/img]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="ModelLabel" type="RichTextLabel" parent="BGPanelCont/TopContainer/FooterContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Current connection status and the
+name of the Grok model from 
+which your next response will 
+come.  Change your model in the 
+\"Models\" tab.
+"
+theme_override_font_sizes/normal_font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gfus3")
+bbcode_enabled = true
+text = "[img=40%]res://Assets/disconnect_icon.png[/img]  No Model Selected   "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+download_file = "user://API_Output/last_response.json"
+use_threads = true
+
+[connection signal="pressed" from="BGPanelCont/TopContainer/MenuBarContainer/QuitButton" to="." method="OnQuitButtonPressed"]
+[connection signal="meta_clicked" from="BGPanelCont/TopContainer/DisplaysContainer/TextBoxDisplays/OutputLabel" to="." method="OnOutputLabelMetaClicked"]
+[connection signal="item_selected" from="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/ArtifactsList" to="." method="OnArtifactsListItemSelected"]
+[connection signal="item_selected" from="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/UploadsList" to="." method="OnUploadsListItemSelected"]
+[connection signal="pressed" from="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/UploadButton" to="." method="OnUploadButtonPressed"]
+[connection signal="pressed" from="BGPanelCont/TopContainer/DisplaysContainer/InfoDisplays/IOButtonsCont/UpdateButton" to="." method="OnUpdateButtonPressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="OnHttpRequestCompleted"]

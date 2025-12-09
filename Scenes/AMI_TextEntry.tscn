@@ -1,0 +1,101 @@
+[gd_scene load_steps=2 format=3 uid="uid://dccinsiidw40a"]
+
+[ext_resource type="Script" uid="uid://5dmj5gs0yiad" path="res://Scripts/AmiTextEntry.cs" id="2_2k6nd"]
+
+[node name="ConfirmationDialog" type="ConfirmationDialog"]
+disable_3d = true
+initial_position = 1
+size = Vector2i(528, 195)
+visible = true
+borderless = true
+popup_window = true
+keep_title_visible = false
+ok_button_text = "Accept"
+dialog_hide_on_ok = false
+script = ExtResource("2_2k6nd")
+
+[node name="TextEntryCont" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(180, 100)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 520.0
+offset_bottom = 146.0
+grow_horizontal = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+
+[node name="TextInstructionLabel" type="Label" parent="TextEntryCont"]
+custom_minimum_size = Vector2(512, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="StackCont" type="VBoxContainer" parent="TextEntryCont"]
+layout_mode = 2
+
+[node name="Line1Cont" type="HBoxContainer" parent="TextEntryCont/StackCont"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="LineLabel1" type="Label" parent="TextEntryCont/StackCont/Line1Cont"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+tooltip_text = "The maximum amount of money 
+you want to spend on Grok.  This is 
+most useful when set equal to your 
+prepaid credits or spend limit from 
+your xAI console."
+mouse_filter = 1
+text = "Budget: "
+horizontal_alignment = 1
+
+[node name="LineEdit1" type="LineEdit" parent="TextEntryCont/StackCont/Line1Cont"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+tooltip_text = "The maximum amount of money 
+you want to spend on Grok.  This is 
+most useful when set equal to your 
+prepaid credits or spend limit from 
+your xAI console."
+alignment = 1
+clear_button_enabled = true
+caret_blink = true
+caret_blink_interval = 0.45
+
+[node name="Line2Cont" type="HBoxContainer" parent="TextEntryCont/StackCont"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="LineLabel2" type="Label" parent="TextEntryCont/StackCont/Line2Cont"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "     Threshold: "
+
+[node name="LineEdit2" type="LineEdit" parent="TextEntryCont/StackCont/Line2Cont"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+alignment = 1
+emoji_menu_enabled = false
+clear_button_enabled = true
+caret_blink = true
+caret_blink_interval = 0.45
+
+[connection signal="canceled" from="." to="." method="OnCanceled"]
+[connection signal="confirmed" from="." to="." method="OnConfirmed"]

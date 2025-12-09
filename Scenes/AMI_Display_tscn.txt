@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://boo47afcviwjg"]
+
+[ext_resource type="Theme" uid="uid://djgjstupcybl8" path="res://Resources/AMI_Theme.tres" id="1_6v1u5"]
+[ext_resource type="Script" uid="uid://xq7fwcq5mxl1" path="res://Scripts/AmiDisplay.cs" id="2_pnmle"]
+[ext_resource type="StyleBox" uid="uid://vfp0gy8b4can" path="res://Resources/AMI_Display_BG.tres" id="3_mgjrk"]
+
+[node name="Control" type="Window"]
+disable_3d = true
+transparent_bg = true
+title = "Viewing {Filename}"
+initial_position = 1
+size = Vector2i(1980, 1260)
+visible = false
+transparent = true
+popup_window = true
+theme = ExtResource("1_6v1u5")
+theme_override_constants/title_height = 100
+theme_override_constants/resize_margin = 10
+theme_override_font_sizes/title_font_size = 36
+script = ExtResource("2_pnmle")
+
+[node name="DisplayPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(1970, 1254)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -987.0
+offset_right = 987.0
+offset_bottom = 664.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+
+[node name="DisplayTopContainer" type="VBoxContainer" parent="DisplayPanel"]
+layout_mode = 2
+
+[node name="DisplayLabel" type="RichTextLabel" parent="DisplayPanel/DisplayTopContainer"]
+custom_minimum_size = Vector2(1880, 540)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 18.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(0.584314, 0.866667, 0.866667, 1)
+theme_override_styles/normal = ExtResource("3_mgjrk")
+bbcode_enabled = true
+text = "View Text or Output Here"
+
+[node name="DisplayButtonsContainer" type="HBoxContainer" parent="DisplayPanel/DisplayTopContainer"]
+custom_minimum_size = Vector2(960, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+alignment = 1
+
+[node name="ExportButton" type="Button" parent="DisplayPanel/DisplayTopContainer/DisplayButtonsContainer"]
+custom_minimum_size = Vector2(220, 80)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Export"
+
+[node name="CopyButton" type="Button" parent="DisplayPanel/DisplayTopContainer/DisplayButtonsContainer"]
+custom_minimum_size = Vector2(220, 80)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Copy"
+
+[node name="DoneButton" type="Button" parent="DisplayPanel/DisplayTopContainer/DisplayButtonsContainer"]
+custom_minimum_size = Vector2(220, 80)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Done"
+
+[connection signal="close_requested" from="." to="." method="OnDoneButtonPressed"]
+[connection signal="pressed" from="DisplayPanel/DisplayTopContainer/DisplayButtonsContainer/DoneButton" to="." method="OnDoneButtonPressed"]

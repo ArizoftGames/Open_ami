@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeFiles\f1d74727e80cd7fa70b2e82058ff9612\copy_espeak_ng_data.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeFiles\copy_espeak_ng_data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{404C44A2-5272-3A9F-BDA5-2DD9926CB1FE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

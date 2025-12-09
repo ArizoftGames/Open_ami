@@ -1,0 +1,21 @@
+[p][/p][p][center]About AMI
+[img]res://Assets/grok_light_icon.png[/img]
+
+AMI v 0.4.2b
+Accessible Model Interface
+for Grok API
+(c)2025 Geoffrey T. Bohrer DBA Arizoft Games[/center][/p]
+[p][center]arizoftgames@gmail.com[/center][/p]
+
+[p][center]AMI IS NOT A PRODUCT OF xAI, NOR DOES xAI SPONSOR, ENDORSE, RECOMMEND, OR PROVIDE SUPPORT FOR AMI.  USE OF TRADEMARKS AND SERVICE MARKS BELONGING TO xAI ARE INTENDED SOLELY TO ACCURATELY IDENTIFY AND ATTRIBUTE OUTPUT FROM GROK API.[/center][/p]
+[p][/p][p][center]Some icons provided by
+[url=https://flagpedia.net]Flagpedia[/url][/center][/p]
+[p][center]Built with[/center][/p]
+[p][center][img]res://icon.svg[/img][/center][/p]
+[p][center]Voice functionality for AMI is provided by the Piper TTS engine v 1.3.0 in accordance with the terms of the GPL-3 license.  Source code for AMI is available under the same licensing terms.[/center]
+
+[p][center]The voice model used is the ManyVoice2 model, provided by the generosity of [url=https://brycebeattie.com/files/tts/]BryceBeattie.com[/url][/center][/p]
+
+
+
+

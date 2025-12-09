@@ -1,0 +1,125 @@
+{  
+  "SessionButtonText": "  Sesja  ",  
+  "SessionButtonTooltipText": "Rozpocznij nową sesję z Grok,\nwznów sesję lub zobacz pewne\narchiwum.",  
+  "SessionButtonPopupIndex0Text": "Nowa Sesja",  
+  "SessionButtonPopupIndex1Text": "Wznów Sesję",  
+  "SessionButtonPopupIndex2Text": "Pokaż Kontekst Sesji",  
+  "SessionButtonPopupIndex3Text": "Pokaż Zapytania",  
+  "SessionButtonPopupIndex4Text": "Pokaż Ostatnie Prompt",  
+  "SessionButtonPopupIndex0Tooltip": "Rozpocznij nową sesję,\nprzechowując poprzednią.",  
+  "SessionButtonPopupIndex1Tooltip": "Wznów wcześniej\nprzechowaną sesję",  
+  "SessionButtonPopupIndex2Tooltip": "Wyświetl pełny łańcuch\nodpowiedzi bieżącej sesji",  
+  "SessionButtonPopupIndex3Tooltip": "Wyświetl historię zapytań\nużytkownika wysłanych w\nbieżącej sesji",  
+  "SessionButtonPopupIndex4Tooltip": "Wyświetl pełne prompt\nwysłane w ostatnim zapytaniu",  
+
+  "EditButtonText": "  Edytuj  ",  
+  "EditButtonTooltipText": "Narzędzia edycji tekstu.",  
+  "EditButtonPopupIndex0Text": "Wytnij",  
+  "EditButtonPopupIndex1Text": "Kopiuj",  
+  "EditButtonPopupIndex2Text": "Wklej",  
+  "EditButtonPopupIndex3Text": "Usuń",  
+  "EditButtonPopupIndex4Text": "Zaznacz Wszystko",  
+
+  "PreferencesButtonText": " Preferencje ",  
+  "PreferencesButtonTooltipText": "Ustaw preferencje interfejsu.",  
+  "PreferencesButtonPopupIndex0Text": "Persona",  
+  "PreferencesButtonPopupIndex1Text": "Ciemny Motyw",  
+  "PreferencesButtonPopupIndex2Text": "Ochrona Hasłem",  
+  "PreferencesButtonPopupIndex3Text": "Sprawdzanie Pisowni",  
+  "PreferencesButtonPopupIndex4Text": "Czcionka",  
+  "PreferencesButtonPopupIndex5Text": "Rozmiar Czcionki",  
+  "PreferencesButtonPopupIndex6Text": "Głos",  
+  "PreferencesButtonPopupIndex0Tooltip": "Wybierz personę dla Grok",  
+  "PreferencesButtonPopupIndex1Tooltip": "Przełącz między motywami\nCiemnym i Jasnym",  
+  "PreferencesButtonPopupIndex2Tooltip": "Włącz lub wyłącz ochronę\nhasłem przy uruchamianiu\naplikacji",  
+  "PreferencesButtonPopupIndex3Tooltip": "Włącz lub wyłącz sprawdzanie\npisowni dla wejścia użytkownika",  
+  "PreferencesButtonPopupIndex4Tooltip": "Wybierz czcionkę dla interfejsu",  
+  "PreferencesButtonPopupIndex5Tooltip": "Dostosuj rozmiar czcionki\ndla wyświetlaczy wejścia i\nwyjścia użytkownika",  
+  "PreferencesButtonPopupIndex6Tooltip": "Włącz lub wyłącz wejście i\nwyjście głosowe",  
+
+  "ModelButtonText": "  Model  ",  
+  "ModelButtonTooltipText": "Pokazuje dostępne modele Grok i\npozwala wybrać jeden dla następnej\nodpowiedzi.",  
+
+  "ToolsButtonText": "  Narzędzia  ",  
+  "ToolsButtonTooltipText": "Narzędzia, które Grok może\nzastosować do zapytania.",  
+  "ToolsButtonPopupIndex0Text": "Wszystkie Narzędzia",  
+  "ToolsButtonPopupIndex0Tooltip": "Włącz lub wyłącz wszystkie narzędzia",  
+  "ToolsButtonPopupIndex1Text": "Narzędzie Wyszukiwania Kolekcji",  
+  "ToolsButtonPopupIndex1Tooltip": "Włącz lub wyłącz Narzędzie\nWyszukiwania Kolekcji",  
+  "ToolsButtonPopupIndex2Text": "Narzędzie Wyszukiwania Web",  
+  "ToolsButtonPopupIndex2Tooltip": "Włącz lub wyłącz Narzędzie\nWyszukiwania Web",  
+  "ToolsButtonPopupIndex3Text": "Narzędzie Wykonywania Kodu",  
+  "ToolsButtonPopupIndex3Tooltip": "Włącz lub wyłącz Narzędzie\nWykonywania Kodu",  
+  
+  "InformationButtonText": "  Informacje  ",  
+  "InformationButtonTooltipText": "Otwórz swoją konsolę xAI, zaktualizuj\nswój klucz API xAI lub edytuj\ninformacje użytkownika lub\nniestandardowe instrukcje.",  
+  "InformationButtonPopupIndex0Text": "Otwórz swoją Konsolę xAI",  
+  "InformationButtonPopupIndex1Text": "Zmień swój Klucz Grok API",  
+  "InformationButtonPopupIndex2Text": "Edytuj Informacje Użytkownika",  
+  "InformationButtonPopupIndex3Text": "Niestandardowe Instrukcje",  
+  "InformationButtonPopupIndex4Text": "Twoje Kolekcje",  
+  "InformationButtonPopupIndex5Text": "Zaktualizuj ID Kolekcji",  
+  "InformationButtonPopupIndex0Tooltip": "Otwórz okno przeglądarki\ndo swojej konsoli xAI",  
+  "InformationButtonPopupIndex1Tooltip": "Wprowadź nowy Klucz\nGrok API",  
+  "InformationButtonPopupIndex2Tooltip": "Edytuj swoje informacje użytkownika",  
+  "InformationButtonPopupIndex3Tooltip": "Dodaj lub edytuj niestandardowe\ninstrukcje",  
+  "InformationButtonPopupIndex4Tooltip": "Zarządzaj swoimi Kolekcjami",  
+  "InformationButtonPopupIndex5Tooltip": "Zaktualizuj swoje ID Kolekcji",  
+
+  "HelpButtonText": "  Pomoc  ",  
+  "HelpButtonTooltipText": "Kilka tematów, które pomogą\nci używać AMI.",  
+  "HelpButtonPopupIndex0Text": "Używanie AMI",  
+  "HelpButtonPopupIndex0Tooltip": "Otwórz Przewodnik Użytkownika AMIGodot",  
+  "HelpButtonPopupIndex1Text": "O Tokenach i Wydatkach",  
+  "HelpButtonPopupIndex1Tooltip": "Dowiedz się więcej o tokenach i użyciu",  
+  "HelpButtonPopupIndex2Text": "Używanie Grok API",  
+  "HelpButtonPopupIndex2Tooltip": "Otwórz okno przeglądarki,\naby zobaczyć dokumentację\nGrok API od xAI",  
+  "HelpButtonPopupIndex3Text": "O AMI",  
+  "HelpButtonPopupIndex3Tooltip": "Zobacz informacje o aplikacji\nAMI i kredyty",  
+  "HelpButtonPopupIndex4Text": "O Kolekcjach",  
+  "HelpButtonPopupIndex4Tooltip": "Dowiedz się o Kolekcjach",  
+
+  "QuitButtonText": "  Zakończ  ",  
+  "QuitButtonTooltipText": "Zamknij AMI.",  
+
+  "LocalizationButtonTooltipText": "Język i lokalizacja, którą\nwybrałeś. Kliknij, aby zmienić.",  
+
+  "OutputLabelTooltipText": "Wyjście Grok dla ciebie.",  
+
+  "OutLabelText": "Artefakty:",  
+  "OutLabelTooltipText": "Pliki, które Grok utworzył\ndla ciebie. Kliknij nazwę pliku,\naby go zobaczyć lub wyeksportować\ndo swojego komputera.",  
+
+  "ArtifactsListTooltipText": "Pliki, które Grok utworzył\ndla ciebie. Kliknij nazwę pliku,\naby go zobaczyć lub wyeksportować\ndo swojego komputera.",  
+
+  "InLabel2Text": "Przesłane:",  
+  "InLabel2TooltipText": "Pliki, które przesłałeś\ndo Grok. Kliknij nazwę pliku,\naby go zobaczyć.",  
+
+  "UploadsListTooltipText": "Pliki, które przesłałeś\ndo Grok. Kliknij nazwę pliku,\naby go zobaczyć.",  
+
+  "UploadButtonTooltipText": "Prześlij plik, aby Grok\nmógł go użyć podczas tej sesji.",  
+
+  "BLabelText": "Budżet (USD):",  
+  "BLabelTooltipText": "Budżet, który ustawiłeś.",  
+
+  "BudgetLabelTooltipText": "Budżet, który ustawiłeś.",  
+
+  "RPLabelText": "Wydatek Odpowiedzi:",  
+
+  "SLabelText": "Wydatek Sesji:",  
+  "SLabelTooltipText": "Całkowity koszt wszystkich\nodpowiedzi od początku tej sesji.",  
+
+  "SessionLabelTooltipText": "Całkowity koszt wszystkich\nodpowiedzi od początku tej sesji.",  
+
+  "RLabelText": "Całkowity Wydatek:",  
+  "RLabelTooltipText": "Całkowity koszt wszystkich\nodpowiedzi od aktualizacji\nbudżetu.",  
+
+  "RunningLabelTooltipText": "Całkowity koszt wszystkich\nodpowiedzi od aktualizacji\nbudżetu.",  
+
+  "SendButtonTooltipText": "Wyślij zawartość Panelu Wejściowego\ndo modelu Grok pokazanego w prawym\ndolnym rogu i uzyskaj odpowiedź.",  
+
+  "UpdateButtonTooltipText": "Zresetuj swój budżet.",  
+
+  "TokensLabelTooltipText": "Aktualne użycie pamięci, w tokenach.\nCałkowite okno kontekstu, tokeny\nw pamięci podręcznej, tokeny prompt,\ntokeny uzupełnienia i tokeny rozumowania.",  
+
+  "ModelLabelTooltipText": "Aktualny stan połączenia i\nnazwa modelu Grok dla twojej\nnastępnej odpowiedzi. Zmień swój\nmodel w menu \"Model\"."  
+}

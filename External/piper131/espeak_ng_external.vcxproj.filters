@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeFiles\badac1f56fd67f646834ea2e96ad8143\espeak_ng_external-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeFiles\badac1f56fd67f646834ea2e96ad8143\espeak_ng_external-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeFiles\badac1f56fd67f646834ea2e96ad8143\espeak_ng_external-update_disconnected.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeFiles\badac1f56fd67f646834ea2e96ad8143\espeak_ng_external-patch_disconnected.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeFiles\badac1f56fd67f646834ea2e96ad8143\espeak_ng_external-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeFiles\badac1f56fd67f646834ea2e96ad8143\espeak_ng_external-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeFiles\badac1f56fd67f646834ea2e96ad8143\espeak_ng_external-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeFiles\b57111e49f8c6ef48746202a253d0270\espeak_ng_external-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeFiles\f1d74727e80cd7fa70b2e82058ff9612\espeak_ng_external.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\GrokAPI\AMIGodot\External\piper131\CMakeFiles\espeak_ng_external" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{404C44A2-5272-3A9F-BDA5-2DD9926CB1FE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

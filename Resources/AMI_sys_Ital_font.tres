@@ -1,0 +1,5 @@
+[gd_resource type="SystemFont" format=3 uid="uid://bmo58628tixoj"]
+
+[resource]
+font_names = PackedStringArray("Segoe UI")
+font_italic = true

@@ -1,0 +1,95 @@
+[gd_scene load_steps=20 format=3 uid="uid://ciqd3gqbl5yxv"]
+
+[ext_resource type="Texture2D" uid="uid://3duk21wy6cq3" path="res://Assets/anim/01.png" id="2_er6bn"]
+[ext_resource type="Script" uid="uid://b3ihmi8k6qlas" path="res://Scripts/AmiThink.cs" id="2_rqrhh"]
+[ext_resource type="Texture2D" uid="uid://dw2fvl181bvw8" path="res://Assets/anim/02.png" id="3_rqrhh"]
+[ext_resource type="Texture2D" uid="uid://bi81ecr160hrd" path="res://Assets/anim/03.png" id="4_vb7w0"]
+[ext_resource type="Texture2D" uid="uid://cbbrwid8pqegr" path="res://Assets/anim/04.png" id="5_vrk6k"]
+[ext_resource type="Texture2D" uid="uid://ckwygml2dt7hq" path="res://Assets/anim/05.png" id="6_gk4yw"]
+[ext_resource type="Texture2D" uid="uid://ce0smtxsatcxw" path="res://Assets/anim/06.png" id="7_2vt10"]
+[ext_resource type="Texture2D" uid="uid://dr00a8bkiigi2" path="res://Assets/anim/07.png" id="8_3ifab"]
+[ext_resource type="Texture2D" uid="uid://cw45esdpsld6x" path="res://Assets/anim/08.png" id="9_msm6e"]
+[ext_resource type="Texture2D" uid="uid://daeaurkj3e6hs" path="res://Assets/anim/09.png" id="10_nsai5"]
+[ext_resource type="Texture2D" uid="uid://biov2ymcd6gh" path="res://Assets/anim/10.png" id="11_a4avi"]
+[ext_resource type="Texture2D" uid="uid://bng2m7uelaxe4" path="res://Assets/anim/11.png" id="12_ry7k2"]
+[ext_resource type="Texture2D" uid="uid://cik6w6waildv8" path="res://Assets/anim/12.png" id="13_r1kfx"]
+[ext_resource type="Texture2D" uid="uid://ku2y5ifg68f5" path="res://Assets/anim/13.png" id="14_da4bq"]
+[ext_resource type="Texture2D" uid="uid://cd5lu5ihuw3tl" path="res://Assets/anim/14.png" id="15_pks8m"]
+[ext_resource type="Texture2D" uid="uid://dpbygixh673bj" path="res://Assets/anim/15.png" id="16_6qiwn"]
+[ext_resource type="Texture2D" uid="uid://e40d6qwgy8t6" path="res://Assets/anim/16.png" id="17_61yr4"]
+
+[sub_resource type="Animation" id="Animation_47wts"]
+resource_name = "think"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/Pic:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33, 0.66, 1, 1.33, 1.66, 2, 2.33, 2.66, 3, 3.33, 3.66, 4, 4.33, 4.66, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_er6bn"), ExtResource("3_rqrhh"), ExtResource("4_vb7w0"), ExtResource("5_vrk6k"), ExtResource("6_gk4yw"), ExtResource("7_2vt10"), ExtResource("8_3ifab"), ExtResource("9_msm6e"), ExtResource("10_nsai5"), ExtResource("11_a4avi"), ExtResource("12_ry7k2"), ExtResource("13_r1kfx"), ExtResource("14_da4bq"), ExtResource("15_pks8m"), ExtResource("16_6qiwn"), ExtResource("17_61yr4")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l6l8v"]
+_data = {
+&"think": SubResource("Animation_47wts")
+}
+
+[node name="PopupPanel" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_rqrhh")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+top_level = true
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Pic" type="TextureRect" parent="PanelContainer"]
+process_priority = -1
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_er6bn")
+expand_mode = 1
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_l6l8v")
+}
