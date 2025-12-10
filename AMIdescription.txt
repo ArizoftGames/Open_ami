@@ -1,0 +1,21 @@
+Accessible Model Interface (AMI) for Grok API v0.4.2beta
+
+Overview
+
+AMI is a standalone desktop application that provides accessible access to xAI's Grok Responses API, designed specifically for students, hobbyists, and aspiring developers who lack the desire orcoding expertise to build their own API interfaces. AMI bridges the gap between the token-limited Grok.com/app experience and the full power of the API, enabling users to leverage advanced Grok models with minimal technical barriers.
+
+Genesis
+
+Born from frustration with limited capability and poor caching in web/app interfaces, AMI delivers a clean-slate approach: under 2000 tokens of hardcoded context leaves maximum room for user-defined project data, codebases, and instructions. This empowers focused, cost-controlled sessions without the financial or functional limitations of casual interfaces.
+
+Key Features
+
+- Multi-Model Access: Select from all available Grok models (grok-4-fast, reasoning models, etc.)
+- Precise Cost Control: Real-time token tracking, budget limits, session/running spend
+- File Handling: Upload text-based documents or images, auto-extract artifacts from responses
+- Session Management: New/resume sessions (30-day history), query/prompt history
+- Customization: Personas, themes, spellcheck, localization (English, Spanish, German, French, Portuguese, Polish), font preferences, voice (English)
+- Security: Optional password protection, encrypted API key storage
+
+Platform: Windows standalone executable (208MB); 125MB zip package 
+Built with: Godot 4.4.1 (C#), OpenAI .NET SDK
